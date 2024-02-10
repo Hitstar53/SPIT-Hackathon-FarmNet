@@ -1,7 +1,8 @@
-import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, TextInput } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
 import { useState } from 'react';
 import LanguageModal from '../components/navbar/LanguageModal';
+
 
 const LandingPage = () => {
     
@@ -9,6 +10,14 @@ const LandingPage = () => {
     const [langModalVisible, setLangModalVisible] = useState(false);
 
     return (
+        <View>
+            <Text>Home</Text>
+            <TouchableOpacity onPress={() => router.push('/home/Home')}>
+                <Text>Go to Home</Text>
+            </TouchableOpacity>
+        </View>
+    )
+}
       <View style={styles.container}>
         <Text style={styles.title}>
           Welcome
@@ -49,6 +58,21 @@ const LandingPage = () => {
   export default LandingPage;
 
 
+const styles = StyleSheet.create({
+    root: {
+      height: '8%',
+   //    width: '100%',
+      display: 'flex',
+      flexDirection: 'row',
+      alignItems: 'flex-start',
+      justifyContent: 'space-around',
+      backgroundColor: 'white',
+    },
+  
+    image: {
+      width: 35,
+      height: 35,
+      marginTop: 10,
   const styles = StyleSheet.create({
     container: {
       flex: 1,
