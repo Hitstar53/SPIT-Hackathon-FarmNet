@@ -1,46 +1,74 @@
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
-import { useRouter } from 'expo-router';
+import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, TextInput } from 'react-native';
+import { useRouter, Stack } from 'expo-router';
 
 const Home = () => {
 
     const router = useRouter();
 
     return (
-        <View>
-            <Text>Home</Text>
-            <TouchableOpacity style={styles.navigateBtn} onPress={() => {
-                router.push('/login/Login')
-            }}>
-                <Text>Go to Login</Text>
-            </TouchableOpacity>
-        </View>
+        <SafeAreaView>
+            <Stack.Screen
+                options={{
+                    headerStyle: { backgroundColor: '#fff' },
+                    headerShadowVisible: false,
+                    headerTitle: ""
+                }}
+            />
+            <View style={styles.container}>
+
+                <View>
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => {
+                            // navigation.navigate('Login');
+                        }}>
+                        <Text style={styles.btnText}>Admin Login</Text>
+                    </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.btn}
+                        onPress={() => {
+                            // navigation.navigate('UserLogin');
+                        }}>
+                        <Text style={styles.btnText}>User Login</Text>
+                    </TouchableOpacity>
+                </View>
+
+            </View>
+        </SafeAreaView>
     )
 }
 
 
 const styles = StyleSheet.create({
-    root: {
-      height: '8%',
-      width: '100%',
-      display: 'flex',
-      flexDirection: 'row',
-      alignItems: 'flex-start',
-      justifyContent: 'space-around',
-      backgroundColor: 'white',
-    },
-  
-    image: {
-      width: 35,
-      height: 35,
-      marginTop: 10,
+    container: {
+        flex: 1,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
 
-    navigateBtn:{
-        width: 35,
-        height: 35,
-        backgroundColor: 'red',
-    }
-  });
+
+    btn: {
+        backgroundColor: 'purple',
+        height: 50,
+        width: '90%',
+        borderRadius: 10,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginTop: 30,
+    },
+    btnText: {
+        fontSize: 18,
+        color: '#fff',
+        fontWeight: '600',
+    },
+
+
+
+
+
+
+});
 
 
 
