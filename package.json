@@ -10,6 +10,8 @@
   },
   "dependencies": {
     "@react-native-community/geolocation": "^3.1.0",
+    "@react-native-community/slider": "^4.5.0",
+    "@react-navigation/native": "^6.1.10",
     "axios": "^1.6.7",
     "expo": "~50.0.6",
     "expo-constants": "~15.4.5",

@@ -103,6 +103,17 @@ const LandingPage = () => {
         <Text style={styles.btnText}>Login</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.btn} onPress={() => { 
+        router.push("/loan/LoanRequest")
+       }}>
+        <Text style={styles.btnText}>Request Payment</Text>
+      </TouchableOpacity>
+
+      <TouchableOpacity style={styles.btn} onPress={() => { 
+        router.push("/loan/PayLoan")
+       }}>
+        <Text style={styles.btnText}>Pay Loan</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity
         style={styles.selectLangaugeBtn}
