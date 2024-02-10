@@ -257,7 +257,6 @@ const Register = () => {
               { width: screenWidth, height: screenHeight - 200 },
             ]}
           >
-            <Image source={{ uri: "../../assets/aadhar.png" }} style={styles.imageContainer} />
             <Text style={styles.text}>Name on Adhaar Card</Text>
             <TextInput
               style={styles.textInput}
