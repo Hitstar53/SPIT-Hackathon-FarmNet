@@ -46,6 +46,29 @@ const Register = () => {
 
   const [modalVisible, setModalVisible] = useState(false);
   const [image, setImage] = useState();
+  const [aadharnumber, setAadharNumber] = useState();
+  const [name, setName] = useState();
+  const [farmSize, setFarmSize] = useState();
+  const [annualRevenue, setAnnualRevenue] = useState();
+  const [soilType, setSoilType] = useState();
+
+  const [imageType, setImageType] = useState();
+
+  const [userImage, setUserImage] = useState();
+  const [aadhaarImage, setAadhaarImage] = useState();
+
+
+  const [userImageURL, setUserImageURL] = useState();
+  const [aadhaarImageURL, setAadhaarImageURL] = useState();
+
+  const soils = {
+    0: "Clay",
+    1: "Sandy",
+    2: "slity",
+    3: "peaty",
+    4: "chalky",
+    5: "loamy",
+  }
 
   const removeImage = async () => {
     try {
@@ -97,7 +120,15 @@ const Register = () => {
 
   const saveImage = async (image) => {
     try {
-      setImage(image);
+      // setImage(image);
+
+      if (imageType === 'aadhaar') {
+        setAadhaarImage(image);
+      }
+
+      else if (imageType === 'user') {
+        setUserImage(image);
+      }
       // console.log(image);
       setModalVisible(false);
       handleImageUpload(image);
@@ -105,6 +136,8 @@ const Register = () => {
       throw new Error(error);
     }
   };
+
+
 
   const handleImageUpload = async (imageURI) => {
     try {
@@ -114,7 +147,17 @@ const Register = () => {
       const fileRef = storageRef.child("images/" + Date.now()); // Use a unique name for the file
       await fileRef.put(blob);
       const downloadURL = await fileRef.getDownloadURL();
-      console.log("File available at", downloadURL);
+      // console.log("File available at", downloadURL);
+      if (imageType === 'aadhaar') {
+        setAadhaarImageURL(downloadURL);
+        console.log("Aadhaar Image URL: ", downloadURL)
+        setImageType('')
+      }
+      else {
+        setUserImageURL(downloadURL);
+        console.log("User Image URL", downloadURL)
+        setImageType('')
+      }
     } catch (error) {
       console.error("Error uploading image: ", error);
     }
@@ -182,7 +225,7 @@ const Register = () => {
     handleScroll(newOffset);
   };
 
-  const numColumns = 5;
+  const numColumns = 6;
 
   const getLang = async () => {
     const lang = await AsyncStorage.getItem("lang");
@@ -221,20 +264,88 @@ const Register = () => {
               placeholder="Enter your name here"
               // onChangeText={setEmail}
               // value={email}
+              onChangeText={(text) => setName(text)}
             />
-            <Text style={styles.text}>Password</Text>
+            <Text style={styles.text}>Aadhar Number</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Password"
+              placeholder="Aadhaar Number"
               // onChangeText={setPassword}
               // value={password}
               // secureTextEntry={true}
+              onChangeText={(text) => setAadharNumber(text)}
             />
-            <TouchableOpacity style={styles.button}>
+            <TouchableOpacity style={styles.button}
+              onPress={handleRightScroll}
+
+            >
               <View>
                 <Text style={styles.submitText}>Submit</Text>
               </View>
             </TouchableOpacity>
+          </View>
+          <View style={[styles.column, { width: screenWidth }]}>
+            <View style={styles.innerContainer}>
+              <Modal
+                animationType="slide"
+                transparent={true}
+                visible={modalVisible}
+                onRequestClose={() => {
+                  Alert.alert("Modal has been closed.");
+                  setModalVisible(!modalVisible);
+                }}
+              >
+                <View style={styles.centeredView}>
+                  <View style={styles.modalView}>
+                    <View></View>
+
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => uploadImage()}
+                    >
+                      <Text style={styles.textStyle}>Camera</Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => selectGalleryImage()}
+                    >
+                      <Text style={styles.textStyle}>Gallery</Text>
+                    </Pressable>
+
+                    <Pressable
+                      style={[styles.button, styles.buttonClose]}
+                      onPress={() => removeImage()}
+                    >
+                      <Text style={styles.textStyle}>Remove</Text>
+                    </Pressable>
+                  </View>
+                </View>
+              </Modal>
+
+              {/* <Image source={{ uri: image }} style={styles.imageContainer} /> */}
+              {
+                aadhaarImage ? <Image source={{ uri: aadhaarImage }} style={styles.imageContainer} /> : <LottieView
+                  source={require("../../assets/aadhar.json")}
+                  style={{ width: 400, height: 200, marginTop: -250 }}
+                  autoPlay
+                  loop
+                />
+              }
+
+              <Text style={styles.FarmText}>Aahaar Photo</Text>
+
+              {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
+              <TouchableOpacity
+                style={styles.buttonContainer}
+                onPress={() => {
+                  setModalVisible(true)
+                  setImageType('aadhaar')
+                }}
+              >
+                <Text style={styles.buttonText}>Upload Image</Text>
+              </TouchableOpacity>
+            </View>
           </View>
 
           <View style={[styles.column, { width: screenWidth }]}>
@@ -277,23 +388,32 @@ const Register = () => {
               </Modal>
 
               {/* <Image source={{ uri: image }} style={styles.imageContainer} /> */}
-              <LottieView
-                source={require("../../assets/aadhar.json")}
-                style={{ width: 400, height: 200, marginTop: -250 }}
-                autoPlay
-                loop
-              />
+
+              {
+                userImage ? <Image source={{ uri: userImage }} style={styles.imageContainer} /> : <LottieView
+                  source={require("../../assets/upload_image.json")}
+                  style={{ width: 400, height: 200, marginTop: -250 }}
+                  autoPlay
+                  loop
+                />
+              }
+
+              <Text style={styles.FarmText}>Your Photo</Text>
 
               {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.buttonContainer}
-                onPress={() => setModalVisible(true)}
+                onPress={() => {
+                  setModalVisible(true)
+                  setImageType('user')
+                }}
               >
-                <Text style={styles.buttonText}>Aadhar Card</Text>
+                {/* <Text style={styles.buttonText}>User Image</Text> */}
                 <Text style={styles.buttonText}>Upload Image</Text>
               </TouchableOpacity>
             </View>
           </View>
+
           <View style={[styles.column, { width: screenWidth }]}>
             <View style={styles.innerinnerContainer}>
               <LottieView
@@ -307,8 +427,8 @@ const Register = () => {
                 style={styles.amountInput}
                 placeholder="Enter amount"
                 keyboardType="numeric"
-                // value={amount}
-                // onChangeText={(text) => setAmount(text)}
+                value={farmSize}
+                onChangeText={(text) => setFarmSize(text)}
               />
             </View>
           </View>
@@ -325,27 +445,71 @@ const Register = () => {
                 style={styles.amountInput}
                 placeholder="Enter amount"
                 keyboardType="numeric"
-                // value={amount}
-                // onChangeText={(text) => setAmount(text)}
+                value={annualRevenue}
+                onChangeText={(text) => setAnnualRevenue(text)}
               />
             </View>
           </View>
+
           <View style={[styles.column, { width: screenWidth }]}>
-            <View style={styles.innerinnerContainer}>
-              <LottieView
-                source={require("../../assets/revenue.json")}
-                style={{ width: 400, height: 200, marginTop: -250 }}
-                autoPlay
-                loop
-              />
-              <Text style={styles.FarmText}>Soil Type</Text>
-              <TextInput
-                style={styles.amountInput}
-                placeholder="Enter amount"
-                keyboardType="numeric"
-                // value={amount}
-                // onChangeText={(text) => setAmount(text)}
-              />
+            <Text> Soil Type </Text>
+            <View style={styles.soilImageContainers}>
+              {/* First row */}
+              {/*Generate two buttons with set background images and text above */}
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(0)}
+              >
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/clay.jpg")}
+                />
+              </TouchableOpacity>
             </View>
           </View>
           {/* Add more columns as needed */}
@@ -527,6 +691,25 @@ const styles = StyleSheet.create({
   modalText: {
     marginBottom: 15,
     textAlign: "center",
+  },
+
+  column: {
+    justifyContent: "center",
+    alignItems: "center",
+    padding: 20,
+    borderColor: "black",
+  },
+  soilImageContainers: {
+    flexDirection: "row",
+    flexWrap: "wrap",
+    justifyContent: "center",
+    alignItems: "center",
+  },
+  soilImageContainer: {
+    width: screenWidth / 3, // Divide by 3 to fit three images in a row
+    height: screenWidth / 3, // Adjust height as needed
+    margin: 5, // Adjust margin between images
+    backgroundColor: "lightgray", // Add background color for better visualization
   },
 });
 
