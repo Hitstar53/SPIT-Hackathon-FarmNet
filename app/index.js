@@ -89,18 +89,8 @@ const LandingPage = () => {
       </TouchableOpacity>
 
 
-      <TouchableOpacity style={styles.btn} onPress={() => {}}>
-        <Text style={styles.btnText}>Lending Institute</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btn} onPress={() => {}}>
-        <Text style={styles.btnText}>User</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btn} onPress={() => { 
-        router.push("/login/Login")
-       }}>
-        <Text style={styles.btnText}>Login</Text>
+      <TouchableOpacity style={styles.btn} onPress={() => { router.push("/login/Login")}}>
+        <Text style={styles.btnText}>{t("enter")}</Text>
       </TouchableOpacity>
 
       <TouchableOpacity style={styles.btn} onPress={() => { 

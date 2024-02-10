@@ -18,7 +18,7 @@ const Navbar = () => {
         onPress={() => {
           router.push("/Chatbot/Chatbot");
         }}>
-        <Image source={require('../../assets/chatbot.png')} style={styles.image} />
+        <Image source={require('../../assets/chatbot.png')} style={styles.chatImage} />
  
       </TouchableOpacity>
 
@@ -48,6 +48,12 @@ const styles = StyleSheet.create({
     height: 35,
     marginTop: 10,
   },
+
+  chatImage:{
+    width:42,
+    height: 40,
+    marginTop: 5,
+  }
 });
 
 export default Navbar;

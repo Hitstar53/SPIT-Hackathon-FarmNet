@@ -5,6 +5,9 @@ import {
 } from "react-native-chart-kit";
 import { Dimensions } from "react-native";
 import TransactionCard from '../../components/Cards/TransactionCard'
+import { Stack } from 'expo-router';
+import { useTranslation } from "react-i18next";
+import { AsyncStorage } from "react-native";
 
 const Transaction = () => {
   const transactionData = {
@@ -15,7 +18,14 @@ const Transaction = () => {
   return (
     <ScrollView>
       <View style={styles.container}>
-        <Text style={{fontSize: 20, fontWeight: 'bold'}}>Loan Over Time</Text>
+      <Stack.Screen
+        options={{
+          headerStyle: { backgroundColor: "#fff" },
+          headerShadowVisible: false,
+          headerTitle: "",
+        }}
+      />
+        <Text style={{fontSize: 20, fontWeight: 'bold'}}>{t("loanOverTime")}</Text>
         <LineChart
           data={{
             labels: ["Jan", "Feb", "March", "Apr", "May", "June"],

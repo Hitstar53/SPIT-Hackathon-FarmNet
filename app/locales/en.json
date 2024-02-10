@@ -3,5 +3,16 @@
     "login" : "Login",
     "mobile" : "Mobile",
     "password" : "Pin",
-    "submit" : "Submit"
+    "submit" : "Submit",
+    "register"  : "Register",
+    "newUser": "New User",
+    "hello":"Hello",
+    "payLoan":"Pay Loan",
+    "request":"Request",
+    "contact":"Contact",
+    "analyse":"Analyse",
+    "user":"User",
+    "lendingInstitute":"Lending Institute",
+    "enter":"Enter",
+    "loanOverTime":"Loan Over Time"
 }

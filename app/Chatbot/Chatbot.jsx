@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, { useState } from 'react';
 import {
   StyleSheet,
   View,
@@ -11,9 +11,7 @@ import {
 } from 'react-native';
 import BotMessage from './BotMessage';
 import UserMessage from './UserMessage';
-import { useRouter, Stack } from "expo-router";
-
-
+import axios from 'axios';
 
 export default function Chatbot() {
   const [userInput, setUserInput] = useState();
@@ -27,73 +25,126 @@ export default function Chatbot() {
   const [error, setError] = useState(false);
   const [allMsgs, setAllMsgs] = useState([]);
 
-//   const donePressed = async () => {
-//     symptoms.map((value, key) => {
-//       console.log(value);
-//     });
 
-//     try {
-//       axios
-//         .post(`${backendUrl}/api/predict_disease/getdisease`, {
-//           symptoms: symptoms,
-//         })
-//         .then(response => {
-//           console.log(response.data);
-//           setPrediction(response.data['Disease']);
-//           setDescription(response.data['Description']);
-//           setTreatment1(response.data['Treatment1']);
-//           setTreatment2(response.data['Treatment2']);
-//           setTreatment3(response.data['Treatment3']);
-//           setTreatment4(response.data['Treatment4']);
-//         })
-//         .catch(error => {
-//           console.log(error);
-//           setAllMsgs([
-//             ...allMsgs,
-//             {
-//               b: "Sorry we couldn't predict that can you please provide more precise symptoms",
-//             },
-//           ]);
-//           setError(true);
-//           setSymptoms([]);
-//         });
-//     } catch (ex) {
-//       console.log(ex);
-//     }
-//   };
+  // const sendUserMsg = async() => {
+  //   setAllMsgs([...allMsgs, { 'u': userInput }]);
+  //   setUserInput('')
+  //   try {
+  //     await axios
+  //       .post('https://hackathon-initial-setup-production-2570.up.railway.app/api/chatbot/', {
+  //         question: userInput,
+  //       })
+  //       .then(response => {
+  //         console.log(response.data);
+  //         setPrediction(response.data['data']);
+  //         // setDescription(response.data['Description']);
+  //         // setTreatment1(response.data['Treatment1']);
+  //         // setTreatment2(response.data['Treatment2']);
+  //         // setTreatment3(response.data['Treatment3']);
+  //         // setTreatment4(response.data['Treatment4']);
+  //       })
+  //       .catch(error => {
+  //         console.log(error);
+  //         setAllMsgs([
+  //           ...allMsgs,
+  //           {
+  //             b: "Sorry we couldn't predict that can you please provide more precise symptoms",
+  //           },
+  //         ]);
+  //         setError(true);
+  //         setSymptoms([]);
+  //       });
+  //   } catch (ex) {
+  //     console.log(ex);
+  //   }
+  // };
 
-//   const handleAddUserInput = () => {
-//     setAllMsgs([...allMsgs, {u: userInput}]);
-//     setSymptoms([...symptoms, userInput]);
-//     setUserInput(null);
-//   };
+  const sendUserMsg = async () => {
+    // Add user message to allMsgs
+    setAllMsgs(prevMsgs => [...prevMsgs, { u: userInput }]);
+  
+    try {
+      const response = await axios.post('https://hackathon-initial-setup-production-2570.up.railway.app/api/chatbot/', {
+        question: userInput,
+      });
+  
+      // Add bot response to allMsgs
+      setAllMsgs(prevMsgs => [...prevMsgs, { b: response.data['data'] }]);
+    } catch (error) {
+      console.log(error);
+      // Add error message to allMsgs
+      setAllMsgs(prevMsgs => [...prevMsgs, { b: "Sorry we couldn't predict that. Can you please provide more precise symptoms?" }]);
+      setError(true);
+      setSymptoms([]);
+    }
+  
+    // Clear user input after sending the message
+    setUserInput('');
+  };
+  
+  const donePressed = async () => {
+    symptoms.map((value, key) => {
+      console.log(value);
+    });
 
-//   React.useEffect(() => {
-//     allMsgs.map((value, index) => {
-//       console.log(index);
-//       console.log(value);
-//     });
-//   }, [allMsgs]);
+    try {
+      await axios
+        .post(`${backendUrl}/api/predict_disease/getdisease`, {
+          symptoms: symptoms,
+        })
+        .then(response => {
+          console.log(response.data);
+          setPrediction(response.data['Disease']);
+          // setDescription(response.data['Description']);
+          // setTreatment1(response.data['Treatment1']);
+          // setTreatment2(response.data['Treatment2']);
+          // setTreatment3(response.data['Treatment3']);
+          // setTreatment4(response.data['Treatment4']);
+          setAllMsgs([
+            ...allMsgs,
+            {
+              'b': response.data['Disease'],
+            },
+          ]);
+        })
+        .catch(error => {
+          console.log(error);
+          setAllMsgs([
+            ...allMsgs,
+            {
+              b: "Sorry we couldn't predict that can you please provide more precise symptoms",
+            },
+          ]);
+          setError(true);
+          setSymptoms([]);
+        });
+    } catch (ex) {
+      console.log(ex);
+    }
+  };
+
+  const handleAddUserInput = () => {
+    setAllMsgs([...allMsgs, { u: userInput }]);
+    setSymptoms([...symptoms, userInput]);
+    setUserInput(null);
+  };
+
+  React.useEffect(() => {
+    allMsgs.map((value, index) => {
+      console.log(index);
+      console.log(value);
+    });
+  }, [allMsgs]);
 
   return (
     <>
-     <Stack.Screen
-        options={{
-          headerStyle: { backgroundColor: "#fff" },
-          headerShadowVisible: false,
-          headerTitle: "",
-        }}
-      />
       <View style={styles.container}>
         <View style={styles.messageWrapper}>
-          <Text style={styles.sectionTitle}>Conversation with DocBot</Text>
+          <Text style={styles.sectionTitle}>Conversation with Krishi Saathi</Text>
           <ScrollView style={styles.scrollarea}>
             <View style={styles.items}>
-              <BotMessage text="Hello! This is DocBot" />
-              <BotMessage text="Please Enter your symptoms here" />
-              <BotMessage text="Click on Done once finished" />
-
-              </View>
+              <BotMessage text="Hello! This is Krishi Saathi" />
+              <BotMessage text="How may I help you" />
 
               {/* {symptoms.map((item, index) => {
                 return <UserMessage key={index} text={item} />;
@@ -113,50 +164,36 @@ export default function Chatbot() {
 
               {/* {allMsgs.map((value, index) => {
                 console.log(Object.keys(value) == 'u');
-                console.log(value['u']);
-                console.log(value['b']);
-                // Object.keys(value) == 'u' ? (
-                //   <UserMessage key={index} text={value['u']} />
-                // ) : (
-                //   <BotMessage key={index} text={value['b']} />
-                // );
+                Object.keys(value) == 'u' ? (
+                  <UserMessage key={index} text={value['u']} />
+                ) : (
+                  <BotMessage key={index} text={value['b']} />
+                );
                 if (Object.keys(value) == 'u') {
                   return <UserMessage key={index} text={value['u']} />;
                 } else {
                   return <BotMessage key={index} text={value['b']} />;
                 }
               })} */}
-{/* 
-              {symptoms[0] ? (
-                <TouchableOpacity onPress={donePressed} underlayColor="white">
-                  <View style={styles.ConfirmButton}>
-                    <Text style={{color: '#ffffff', fontSize: 14}}>Done</Text>
-                  </View>
-                </TouchableOpacity>
-              ) : (
-                <></>
-              )} */}
+           {allMsgs.map((value, index) => {
+  if (value.u !== undefined) {
+    return <UserMessage key={index} text={value.u} />;
+  } else if (value.b !== undefined) {
+    return <BotMessage key={index} text={value.b} />;
+  }
+})}
 
-              {/* {prediction ? (
+
+              {prediction ? (
                 <View>
                   <BotMessage
-                    text={`We believe you have acquired  ${prediction}`}
+                    text={prediction}
                   />
-                  <BotMessage text={description} />
-                  <BotMessage text="Suggested Treatments are " />
-                  <BotMessage text={treatment1} />
-                  <BotMessage text={treatment2} />
-                  <BotMessage text={treatment3} />
-                  <BotMessage text={treatment4} />
                 </View>
               ) : (
                 <></>
               )}
-            </View> */}
-
-            <UserMessage text="I am a user"/>
-            <UserMessage text="I am a user"/>
-            
+            </View>
           </ScrollView>
         </View>
 
@@ -171,7 +208,7 @@ export default function Chatbot() {
             }}
           />
 
-          <TouchableOpacity onPress={() => handleAddUserInput()}>
+          <TouchableOpacity onPress={() => sendUserMsg()}>
             <View style={styles.addWrapper}>
               <Image
                 style={styles.image}

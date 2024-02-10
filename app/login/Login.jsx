@@ -81,7 +81,7 @@ const Login = () => {
         }}
       />
       <View style={styles.header}>
-        <Text style={styles.title}>{t("Login To FarmNet")}</Text>
+        <Text style={styles.title}>{t("login")}</Text>
         <LottieView
           source={require("../../assets/LoginAnim.json")}
           style={{ width: 400, height: 200, marginTop: 50 }}
@@ -91,10 +91,10 @@ const Login = () => {
       </View>
 
       <View style={styles.conatiner}>
-        <Text style={styles.text}>{t("Enter Mobile")}</Text>
+        <Text style={styles.text}>{t("mobile")}</Text>
         <TextInput
           style={styles.textInput}
-          placeholder={t("Mobile Number")}
+          placeholder={t("mobile")}
           onChangeText={setEmail}
           value={email}
         />
@@ -123,12 +123,12 @@ const Login = () => {
         </View>
 
         <View style={styles.registerContainer} >
-          <Text>New User?</Text>
-          <TouchableOpacity onPress = {()=> router.push('/register/Register')}><Text style={styles.registerBtn} >Register</Text></TouchableOpacity>
+          <Text style={{fontSize:18}}>{t("newUser")}?</Text>
+          <TouchableOpacity onPress = {()=> router.push('/register/Register')}><Text style={styles.registerBtn} >{t("register")}</Text></TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
           <View>
-            <Text>Submit</Text>
+            <Text>{t("submit")}</Text>
           </View>
         </TouchableOpacity>
       </View>
@@ -213,15 +213,17 @@ const styles = StyleSheet.create({
   },
 
   registerContainer:{
-    marginTop: 10,
+    marginTop: 15,
     marginLeft: 15,
     flexDirection: 'row',
     justifyContent: 'center',
     gap: 10,
+    marginLeft:40
   },
 
   registerBtn:{
     color: 'blue',
-    textDecorationLine: 'underline'
+    textDecorationLine: 'underline',
+    fontSize:18
   }
 });

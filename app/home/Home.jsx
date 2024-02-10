@@ -1,13 +1,18 @@
-import React from "react";
-import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
-import { SafeAreaView } from "react-native-safe-area-context";
+import React, { useRef, useState } from "react";
+import { View, Text, StyleSheet, Image, ScrollView, Modal, FlatList, TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
 import BankCard from "../../components/Cards/BankCard";
 import CreditScore from "../../components/Cards/CreditScore";
 import SquareCard from "../../components/Cards/SquareCard";
 import Navbar from "../../components/navbar/Navbar";
+import { useTranslation } from "react-i18next";
 
 const Home = () => {
+
+  const { t } = useTranslation();
+  const [langModalVisible, setLangModalVisible] = useState(false);
+
+
   return (
     // <View style={styles.container1}>
     //   <Stack.Screen
@@ -50,8 +55,12 @@ const Home = () => {
           headerStyle: { backgroundColor: "#fff" },
           headerShadowVisible: false,
           headerTitle: "",
+         
         }}
       />
+            <View style={styles.centeredView}>
+       
+      </View>
       <ScrollView>
       <View style={styles.detailsContainer}>
         <Image
@@ -60,7 +69,7 @@ const Home = () => {
         />
 
         <View style={styles.userDetails}>
-          <Text style={styles.greetingText}>Hello,</Text>
+          <Text style={styles.greetingText}>{t("hello")}</Text>
           <Text style={styles.customerName}>Vineet Parmar</Text>
         </View>
 
@@ -78,12 +87,12 @@ const Home = () => {
         />
         <View style={styles.sqcontainer}>
           <View style={styles.srow}>
-            <SquareCard iconName="paper-plane" text1="Pay Loan" text2="Lorem Ipsum" />
-            <SquareCard iconName="wallet" text1="Request" text2="Version 2.0" />
+            <SquareCard iconName="paper-plane" text1={t("payLoan")} text2="Lorem Ipsum" />
+            <SquareCard iconName="wallet" text1={t("request")} text2="Version 2.0" />
           </View>
           <View style={styles.srow}>
-            <SquareCard iconName="user-friends" text1="Contact" text2="Version 3.0" />
-            <SquareCard iconName="chart-line" text1="Analyse" text2="Version 4.0" />
+            <SquareCard iconName="user-friends" text1={t("contact")} text2="Version 3.0" />
+            <SquareCard iconName="chart-line" text1={t("analyse")} text2="Version 4.0" />
           </View>
         </View>
       </ScrollView>

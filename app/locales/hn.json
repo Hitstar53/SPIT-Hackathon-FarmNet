@@ -3,5 +3,16 @@
     "login" : "लॉग इन करें",
     "mobile" : "मोबाइल नंबर",
     "password" : "पिन",
-    "submit" : "जमा करें"
+    "submit" : "जमा करें",
+    "register" : "रजिस्टर करें",
+    "newUser": "नया उपयोगकर्ता?",
+    "hello": "नमस्ते",
+    "payLoan": "ऋण भुगतान",
+    "request": "ऋण अनुरोध",
+    "contact": "संपर्क करें",
+    "analyse": "ऋण विश्लेषण",
+    "user": "उपयोगकर्ता",
+    "lendingInstitute": "ऋण संस्थान",
+    "enter": "दर्ज करें",
+    "loanOverTime": "समय के साथ ऋण"
 }
