@@ -8,6 +8,10 @@ import tempfile, os
 import json
 import joblib
 from .constants import soil_dict
+import pandas as pd
+import random
+from sklearn.metrics.pairwise import cosine_similarity
+import numpy as np
 
 # Create your views here.
 class TestView(APIView):
@@ -37,14 +41,13 @@ class CropPredictionView(APIView):
         temperature = request.data.get("temperature")
         humidity = request.data.get("humidity")
         ph = soil_dict[soil]["pH"]
-        rainfall = request.data.get("rainfall")
         scaler = joblib.load('./mlmodel/models/crop_prediction/scaler.pkl')
         targets = joblib.load('./mlmodel/models/crop_prediction/targets.pkl')
         grad_model = joblib.load('./mlmodel/models/crop_prediction/grad_model.pkl')
         grid_search_model = joblib.load('./mlmodel/models/crop_prediction/grid_search_model.pkl')
         knn_model = joblib.load('./mlmodel/models/crop_prediction/knn_model.pkl')
         svc_model = joblib.load('./mlmodel/models/crop_prediction/svc_poly_model.pkl')
-        x = [[N,P,K,temperature,humidity,ph,rainfall]]
+        x = [[N,P,K,temperature,humidity,ph]]
         x = scaler.transform(x)
         preds = []
         preds.append([max(grad_model.predict_proba(x)[0]),targets[grad_model.predict(x)[0]]])
@@ -55,16 +58,26 @@ class CropPredictionView(APIView):
         return Response({"message": "Got some data!", "data":set([preds[0][1],preds[1][1],preds[2][1],preds[3][1]])})
     
 
+class QnAChatBotView(APIView):
+    def post(self,request):
+        welcome = ['hi', 'hey']
+        question = request.data.get("question")
+        data = pd.read_csv("./mlmodel/models/chatbot/data.csv")
+        tfidf_fit = joblib.load('./mlmodel/models/chatbot/tfidf_fit.pkl')
+        for w in question.split():
+            if w.lower() in welcome:
+                return random.choice(welcome)  
+        tfidf_test=tfidf_fit.transform([question])
+        mask=tfidf_test.toarray()!=0
+        m=mask[0]
+        tfidf_test.toarray()[mask]
+        corpus = data['questions'].values
+        tfidf_corpus=tfidf_fit.transform(corpus)
+        cm=cosine_similarity(tfidf_test, tfidf_corpus)
+        pos=np.argmax(cm[0])
+        data.iloc[pos]
+        return Response({"message": "Got some data!", "data":data.iloc[pos]['answers']})
+    
     
 
-
-
-# {
-# "N":90,
-# "P":42,
-# "K":43,
-# "temperature":20.87974371,
-# "humidity":82.00274423,
-# "ph":6.502985292000001,
-# "rainfall":202.9355362
-# }
+        
