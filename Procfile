@@ -1,1 +1,1 @@
-web: gunicorn 'mlmodel.wsgi'
+web: gunicorn 'DjangoServer.wsgi'
