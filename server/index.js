@@ -3,7 +3,6 @@ import bodyParser from "body-parser";
 import cors from "cors";
 import dotenv from "dotenv";
 import connectDB from "./config/db.js";
-import ErrorHandler from "./middleware/Error.js";
 import indexRouter from "./Routes/index.js"
 
 /* setting up server */
@@ -13,7 +12,6 @@ connectDB();
 dotenv.config();
 
 app.use(express.urlencoded({ extended: true }));
-app.use(ErrorHandler);
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
