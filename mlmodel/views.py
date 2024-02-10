@@ -13,7 +13,7 @@ import random
 from sklearn.metrics.pairwise import cosine_similarity
 import numpy as np
 import cv2
-import face_recognition
+from .utils import *
 
 # Create your views here.
 class TestView(APIView):
@@ -84,31 +84,9 @@ class CompareModel(APIView):
     def post(self,request):
         aadhar = request.data.get("aadhar")
         profile = request.data.get("profile")
-        aaad = request.get(aadhar)
-        pro = request.get(profile)
-        aadhar_array = np.asarray(bytearray(aaad.content), dtype=np.uint8)
-        profile_array = np.asarray(bytearray(pro.content), dtype=np.uint8)
-        aadhar_image = cv2.imdecode(aadhar_array, cv2.IMREAD_COLOR)
-        profile_image = cv2.imdecode(profile_array, cv2.IMREAD_COLOR)
-        face_cascade = cv2.CascadeClassifier(cv2.data.haarcascades + 'haarcascade_frontalface_default.xml')
-        gray_image = cv2.cvtColor(aadhar_array, cv2.COLOR_BGR2GRAY)
-        faces = face_cascade.detectMultiScale(gray_image, scaleFactor=1.1, minNeighbors=5, minSize=(30, 30))
-        for (x, y, w, h) in faces:
-            cv2.rectangle(aadhar_image, (x, y), (x+w, y+h), (0, 255, 0), 2)
-            extracted_face = aadhar_image[y:y+h, x:x+w]
-        id_card_face_locations = face_recognition.face_locations(extracted_face)
-        profile_face_locations = face_recognition.face_locations(profile_image)
-        id_card_face_encodings = face_recognition.face_encodings(extracted_face, id_card_face_locations)
-        profile_face_encodings = face_recognition.face_encodings(profile_image, profile_face_locations)
-        for id_card_face_encoding in id_card_face_encodings:
-            for profile_face_encoding in profile_face_encodings:
-                results = face_recognition.compare_faces([id_card_face_encoding], profile_face_encoding)
-                distance = face_recognition.face_distance([id_card_face_encoding], profile_face_encoding)
-                thershold = 0.6
-                if results[0] == True and distance[0] < thershold:
-                    return Response({"message": "Got some data!", "data": True})
-                else:
-                    return Response({"message": "Got some data!", "data": False})
+        res = compare_faces(aadhar,profile)
+        return Response({"message": "Got some data!", "data":res})
+        
     
     
 
