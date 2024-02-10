@@ -87,7 +87,14 @@ const LandingPage = () => {
       >
         <Text style={styles.btnText}>Transactions</Text>
       </TouchableOpacity>
-
+      <TouchableOpacity
+        style={styles.btn}
+        onPress={() => {
+          router.push("/crop/CropInfo");
+        }}
+      >
+        <Text style={styles.btnText}>Crop Information</Text>
+      </TouchableOpacity>
 
       <TouchableOpacity style={styles.btn} onPress={() => {}}>
         <Text style={styles.btnText}>Lending Institute</Text>

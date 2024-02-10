@@ -17,12 +17,18 @@ const TempLoan = () => {
       {/* Amount */}
       <View style={styles.amountContainer}>
         <Text style={styles.amountText}>$500</Text>
+        <Text style={styles.amountText}></Text>
+        <Text style={styles.amountText}></Text>
+        <Text style={styles.amountText}></Text>
+        <Text style={styles.amountText}></Text>
       </View>
 
       {/* Pay Button */}
+      <View>
       <TouchableOpacity style={styles.payButton} onPress={() => alert("Payment successful!")}>
         <Text style={styles.buttonText}>Pay Now</Text>
       </TouchableOpacity>
+      </View>
     </View>
   );
 };
@@ -30,9 +36,10 @@ const TempLoan = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "spcace-evenly",
-    justifyContent: "center",
+    alignItems: "center",
+    justifyContent: "space-between",
     backgroundColor: "#fff",
+    padding: 30,
   },
   profileContainer: {
     alignItems: "center",
@@ -58,7 +65,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   amountText: {
-    fontSize: 36,
+    fontSize: 48,
     fontWeight: "bold",
   },
   payButton: {
