@@ -12,15 +12,16 @@ connectDB();
 dotenv.config();
 
 app.use(express.urlencoded({ extended: true }));
+app.use(cors());
+app.use(express.json());
+app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
+app.use(bodyParser.json({ limit: "30mb", extended: true }));
 app.listen(PORT, () => {
   console.log(`Server is running at http://localhost:${PORT}`);
 });
-app.use(cors());
-app.use(express.json({ limit: "5mb" }));
-app.use(bodyParser.urlencoded({ limit: "30mb", extended: true }));
-app.use(bodyParser.json({ limit: "30mb", extended: true }));
+
 
 /* setting up routes */
 
 // set up your routes here
-app.use("api/", indexRouter);
+app.use("/api", indexRouter);
