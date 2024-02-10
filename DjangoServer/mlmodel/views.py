@@ -7,6 +7,7 @@ import base64
 import tempfile, os
 import json
 import joblib
+from .constants import soil_dict
 
 # Create your views here.
 class TestView(APIView):
@@ -29,12 +30,13 @@ class TestView(APIView):
     
 class CropPredictionView(APIView):
     def post(self,request):
-        N = request.data.get("N")
-        P = request.data.get("P")
-        K = request.data.get("K")
+        soil = request.data.get("soil")
+        N =  soil_dict[soil]["N"]
+        P = soil_dict[soil]["P"]
+        K = soil_dict[soil]["K"]
         temperature = request.data.get("temperature")
         humidity = request.data.get("humidity")
-        ph = request.data.get("ph")
+        ph = soil_dict[soil]["pH"]
         rainfall = request.data.get("rainfall")
         scaler = joblib.load('./mlmodel/models/crop_prediction/scaler.pkl')
         targets = joblib.load('./mlmodel/models/crop_prediction/targets.pkl')
