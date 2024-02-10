@@ -1,3 +1,7 @@
 {
-    "welcome" : "Welcome to FarmNet"
+    "welcome" : "Welcome to FarmNet",
+    "login" : "Login",
+    "mobile" : "Mobile",
+    "password" : "Pin",
+    "submit" : "Submit"
 }

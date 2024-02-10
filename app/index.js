@@ -14,16 +14,23 @@ import LanguageModal from "../components/LanguageModal";
 import i18next, { languageResources } from "./services/i18next";
 import { useTranslation } from "react-i18next";
 import languagesList from "./services/languagesList.json";
+import { AsyncStorage } from "react-native";
+import { FontAwesome5 } from "@expo/vector-icons";
 
 const LandingPage = () => {
   const router = useRouter();
   const [langModalVisible, setLangModalVisible] = useState(false);
+
+  const saveSelectedLang = async (lng) => {
+    await AsyncStorage.setItem("lng", lng);
+  };
 
   const { t } = useTranslation();
 
   const changeLng = (lng) => {
     i18next.changeLanguage(lng);
     setLangModalVisible(false);
+    saveSelectedLang(lng);
   };
 
   return (
@@ -33,12 +40,13 @@ const LandingPage = () => {
           visible={langModalVisible}
           onRequestClose={() => setLangModalVisible(false)}
           animationType="slide"
-          transparent={true}
         >
           <View style={styles.centeredView}>
             <View style={styles.modalView}>
               <FlatList
+                style={styles.languagesList}
                 data={Object.keys(languageResources)}
+                keyExtractor={(item) => item}
                 renderItem={({ item }) => (
                   <TouchableOpacity
                     style={styles.languageButton}
@@ -79,12 +87,23 @@ const LandingPage = () => {
       >
         <Text style={styles.btnText}>Transactions</Text>
       </TouchableOpacity>
+
+
       <TouchableOpacity style={styles.btn} onPress={() => {}}>
         <Text style={styles.btnText}>Lending Institute</Text>
       </TouchableOpacity>
+
       <TouchableOpacity style={styles.btn} onPress={() => {}}>
         <Text style={styles.btnText}>User</Text>
       </TouchableOpacity>
+
+      <TouchableOpacity style={styles.btn} onPress={() => { 
+        router.push("/login/Login")
+       }}>
+        <Text style={styles.btnText}>Login</Text>
+      </TouchableOpacity>
+
+
       <TouchableOpacity
         style={styles.selectLangaugeBtn}
         onPress={() => {
@@ -92,6 +111,7 @@ const LandingPage = () => {
         }}
       >
         <Text>Select Language</Text>
+        <FontAwesome5 name="language" size={25} color="#333" />
       </TouchableOpacity>
     </View>
   );
@@ -106,11 +126,27 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   centeredView: {
-    flex: 1,
     justifyContent: "center",
     alignItems: "center",
     marginTop: 22,
-    backgroundColor: "black",
+    backgroundColor: "rgba(0,0,0,0.5)",
+  },
+  modalView: {
+    height: "100%",
+    width: "70%",
+    margin: 20,
+    backgroundColor: "#6258e8",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5,
   },
   title: {
     fontSize: 20,
@@ -133,7 +169,6 @@ const styles = StyleSheet.create({
   selectLangaugeBtn: {
     width: "50%",
     height: 50,
-    borderWidth: 0.2,
     borderRadius: 10,
     position: "absolute",
     alignSelf: "center",
@@ -144,15 +179,13 @@ const styles = StyleSheet.create({
   },
 
   languagesList: {
-    flex: 1,
-    justifyContent: "center",
-    padding: 10,
-    backgroundColor: "#6258e8",
+    width: "100%",
   },
 
   languageButton: {
+    screenWidth: "100%",
     padding: 10,
-    borderBottomColor: "#dddddd",
+    borderBottomColor: "white",
     borderBottomWidth: 1,
   },
   lngName: {

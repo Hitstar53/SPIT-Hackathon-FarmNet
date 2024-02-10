@@ -23,7 +23,6 @@ const CreditScore = ({ creditScore }) => {
       >
         <Text style={styles.creditScore}>{creditScore}</Text>
       </View>
-      <Text style={styles.creditCardText}>Credit Score</Text>
     </View>
   );
 };
@@ -33,8 +32,8 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   creditCardCircle: {
-    width: 120,
-    height: 120,
+    width: 60,
+    height: 60,
     borderRadius: 60,
     borderWidth: 6,
     justifyContent: "center",
@@ -42,7 +41,7 @@ const styles = StyleSheet.create({
     marginBottom: 10,
   },
   creditScore: {
-    fontSize: 28,
+    fontSize: 20,
     fontWeight: "bold",
   },
   creditCardText: {
