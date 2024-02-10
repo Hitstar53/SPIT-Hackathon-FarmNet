@@ -1,24 +1,44 @@
 {
-  "name": "hackathon-initial-setup",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
+  "name": "client",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "server": "nodemon server/index.js",
-    "client": "npm run dev --prefix client",
-    "django": "python DjangoServer/manage.py runserver",
-    "dev": "concurrently \"npm run server\" \"npm run client\"",
-    "rest": "concurrently \"npm run client\" \"npm run django\"",
-    "all": "concurrently \"npm run server\" \"npm run client\" \"npm run django\""
+    "dev": "vite",
+    "build": "vite build",
+    "lint": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0",
+    "preview": "vite preview"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
   "dependencies": {
-    "nodemon": "^3.0.3"
+    "@emotion/react": "^11.11.3",
+    "@emotion/styled": "^11.11.0",
+    "@mui/icons-material": "^5.15.9",
+    "@mui/material": "^5.15.9",
+    "@mui/x-date-pickers": "^6.19.3",
+    "@reduxjs/toolkit": "^2.1.0",
+    "antd": "^5.14.0",
+    "apexcharts": "^3.45.2",
+    "axios": "^1.6.7",
+    "dayjs": "^1.11.10",
+    "lottie-react": "^2.4.0",
+    "react": "^18.2.0",
+    "react-apexcharts": "^1.4.1",
+    "react-dom": "^18.2.0",
+    "react-responsive": "^9.0.2",
+    "react-router-dom": "^6.22.0",
+    "react-spinners": "^0.13.8"
   },
   "devDependencies": {
-    "concurrently": "^8.2.2"
+    "@types/react": "^18.2.55",
+    "@types/react-dom": "^18.2.19",
+    "@vitejs/plugin-react": "^4.2.1",
+    "autoprefixer": "^10.4.17",
+    "eslint": "^8.56.0",
+    "eslint-plugin-react": "^7.33.2",
+    "eslint-plugin-react-hooks": "^4.6.0",
+    "eslint-plugin-react-refresh": "^0.4.5",
+    "postcss": "^8.4.35",
+    "tailwindcss": "^3.4.1",
+    "vite": "^5.1.0"
   }
 }
