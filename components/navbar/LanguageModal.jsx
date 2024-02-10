@@ -21,10 +21,14 @@ const LanguageModal = ({
     const [selectedLang, setSelectedLang] = useState(0);
     const [languages, setLangauges] = useState([
         { name: 'English', selected: true },
-        { name: 'தமிழ்', selected: false },
         { name: 'हिन्दी', selected: false },
-        { name: 'ਪੰਜਾਬੀ', selected: false },
-        { name: 'اردو', selected: false },
+        // { name: 'मराठी', selected: false },
+        // { name: 'ગુજરાતી', selected: false },
+        // { name: 'বাংলা', selected: false },
+        // { name: 'தமிழ்', selected: false },
+        // { name: 'తెలుగు', selected: false },
+        // { name: 'ಕನ್ನಡ', selected: false },
+        // { name: 'മലയാളം', selected: false },
     ]);
     const onSelect = index => {
         const temp = languages;

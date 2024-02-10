@@ -1,5 +1,4 @@
 import React from "react";
-import { View, Text } from "react-native";
 import NewScreen from "../../components/Scroll/HorizontalScroll";
 import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
@@ -18,6 +17,43 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const Register = () => {
+
+  const { t } = useTranslation();
+
+  const scrollViewRef = useRef(null);
+  const [scrollOffset, setScrollOffset] = useState(0);
+  const columnWidth = screenWidth; // Adjust based on your column width
+
+  const handleScroll = (x) => {
+    if (scrollViewRef.current) {
+      scrollViewRef.current.scrollTo({ x, animated: true });
+      setScrollOffset(x);
+    }
+  };
+
+  const handleLeftScroll = () => {
+    const newOffset = Math.max(0, scrollOffset - columnWidth);
+    handleScroll(newOffset);
+  };
+
+  const handleRightScroll = () => {
+    const newOffset = Math.min(
+      screenWidth * (numColumns - 1),
+      scrollOffset + columnWidth
+    );
+    handleScroll(newOffset);
+  };
+
+  const numColumns = 3;
+
+  const getLang = async () => {
+    const lang = await AsyncStorage.getItem("lang");
+    if (lang) {
+      i18n.changeLanguage(lang);
+    }
+  };
+
+
   return (
     <View>
       <ScrollView

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { View, Text, TextInput, StyleSheet, TouchableOpacity } from "react-native";
 import LottieView from "lottie-react-native";
 
@@ -19,7 +19,7 @@ const LoanRequest = () => {
   return (
     <View style={styles.container}>
       <LottieView
-        source={require("./path-to-your-animation.json")} // Replace with the path to your Lottie animation file
+        // source={require("./path-to-your-animation.json")} // Replace with the path to your Lottie animation file
         autoPlay
         loop
         style={styles.animation}
