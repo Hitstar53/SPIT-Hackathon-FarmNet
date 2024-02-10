@@ -10,6 +10,12 @@ const Navbar = () => {
     <View style={styles.root}>
       <TouchableOpacity
         onPress={() => {
+          router.push("/language/StartingScreen");
+        }}>
+        <Image style={styles.image} source={require('../../assets/home.png')} />
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
           router.push("/games-section/Games");
         }}>
         <Image style={styles.image} source={require('../../assets/home.png')} />
@@ -22,12 +28,12 @@ const Navbar = () => {
  
       </TouchableOpacity>
 
-      <TouchableOpacity
+      {/* <TouchableOpacity
         onPress={() => {
           router.push("/games-section/Games");
         }}>
-        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-right.png') }/> */}
-      </TouchableOpacity>
+        <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-right.png') }/>
+      </TouchableOpacity> */}
     </View>
   );
 };

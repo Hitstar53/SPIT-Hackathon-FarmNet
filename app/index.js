@@ -1,203 +1,103 @@
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  StyleSheet,
-  SafeAreaView,
-  TextInput,
-  Modal,
-  FlatList,
-} from "react-native";
-import { useRouter, Stack } from "expo-router";
-import { useState } from "react";
-import LanguageModal from "../components/LanguageModal";
-import i18next, { languageResources } from "./services/i18next";
+import React from 'react';
+import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import {router} from 'expo-router';
+
+import i18next, { languageResources } from "./services/i18next"
 import { useTranslation } from "react-i18next";
-import languagesList from "./services/languagesList.json";
 import { AsyncStorage } from "react-native";
-import { FontAwesome5 } from "@expo/vector-icons";
+import languagesList from "./services/languagesList.json";
 
-const LandingPage = () => {
-  const router = useRouter();
-  const [langModalVisible, setLangModalVisible] = useState(false);
+const StartingScreen = () => {
+  const languages = [
+    'English',
+    'हिंदी',
+    'தமிழ்',
+    'తెలుగు',
+    'ಕನ್ನಡ',
+    'മലയാളം',
+    'मराठी',
+    'বাংলা',
+    'ગુજરાતી',
+  ];
 
-  const saveSelectedLang = async (lng) => {
-    await AsyncStorage.setItem("lng", lng);
+  const selectedLanguage = 'English'; // Set the initially selected language
+
+  const renderButtons = () => {
+
+    const saveSelectedLang = async (lng) => {
+      await AsyncStorage.setItem("lng", lng);
+    };
+
+    const languagesList = ["en", "hn", "ta", "te", "kn", "ml", "mr", "bn", "gu"]
+  
+    const { t } = useTranslation();
+  
+    const changeLng = (lng) => {
+      i18next.changeLanguage(languagesList[lng]);
+      saveSelectedLang(lng);
+      router.push('/language/StartingScreen')
+
+    };
+  
+
+    return (
+      <View style={styles.mainContainer}>
+        {languages.map((language, index) => (
+          <TouchableOpacity
+            key={index}
+            style={styles.button}
+            onPress={() => changeLng(index) }>
+            <Text style={styles.buttonText}>{language}</Text>
+          </TouchableOpacity>
+        ))}
+      </View>
+    );
   };
 
-  const { t } = useTranslation();
-
-  const changeLng = (lng) => {
-    i18next.changeLanguage(lng);
-    setLangModalVisible(false);
-    saveSelectedLang(lng);
+  const handleLanguageSelection = (selectedLanguage) => {
+    // Handle the selection logic
+    console.log('Selected language:', selectedLanguage);
   };
 
   return (
     <View style={styles.container}>
-      <View style={styles.centeredView}>
-        <Modal
-          visible={langModalVisible}
-          onRequestClose={() => setLangModalVisible(false)}
-          animationType="slide"
-        >
-          <View style={styles.centeredView}>
-            <View style={styles.modalView}>
-              <FlatList
-                style={styles.languagesList}
-                data={Object.keys(languageResources)}
-                keyExtractor={(item) => item}
-                renderItem={({ item }) => (
-                  <TouchableOpacity
-                    style={styles.languageButton}
-                    onPress={() => changeLng(item)}
-                  >
-                    <Text style={styles.lngName}>
-                      {languagesList[item].nativeName}
-                    </Text>
-                  </TouchableOpacity>
-                )}
-              />
-            </View>
-          </View>
-        </Modal>
-      </View>
-
-      <Stack.Screen
-        options={{
-          headerStyle: { backgroundColor: "#fff" },
-          headerShadowVisible: false,
-          headerTitle: "",
-        }}
-      />
-      <Text style={styles.title}>{t("welcome")}</Text>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          router.push("/home/Home");
-        }}
-      >
-        <Text style={styles.btnText}>Home</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          router.push("/transaction/Transaction");
-        }}
-      >
-        <Text style={styles.btnText}>Transactions</Text>
-      </TouchableOpacity>
-      <TouchableOpacity
-        style={styles.btn}
-        onPress={() => {
-          router.push("/crop/CropInfo");
-        }}
-      >
-        <Text style={styles.btnText}>Crop Information</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btn} onPress={() => { router.push("/login/Login")}}>
-        <Text style={styles.btnText}>{t("enter")}</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btn} onPress={() => { 
-        router.push("/loan/LoanRequest")
-       }}>
-        <Text style={styles.btnText}>Request Payment</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity style={styles.btn} onPress={() => { 
-        router.push("/loan/PayLoan")
-       }}>
-        <Text style={styles.btnText}>Pay Loan</Text>
-      </TouchableOpacity>
-
-      <TouchableOpacity
-        style={styles.selectLangaugeBtn}
-        onPress={() => {
-          setLangModalVisible(true);
-        }}
-      >
-        <Text>Select Language</Text>
-        <FontAwesome5 name="language" size={25} color="#333" />
-      </TouchableOpacity>
+      <Text style={styles.title}>Choose Your Language</Text>
+      {renderButtons()}
     </View>
   );
 };
 
-export default LandingPage;
+export default StartingScreen;
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-  },
-  centeredView: {
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 22,
-    backgroundColor: "rgba(0,0,0,0.5)",
-  },
-  modalView: {
-    height: "100%",
-    width: "70%",
-    margin: 20,
-    backgroundColor: "#6258e8",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
   },
   title: {
-    fontSize: 20,
-    fontWeight: "700",
+    fontSize: 24,
+    marginBottom: 20,
   },
-  btn: {
-    backgroundColor: "black",
-    height: 50,
-    width: "70%",
-    borderRadius: 10,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 30,
+  mainContainer: {
+    flexDirection: 'row',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
   },
-  btnText: {
-    fontSize: 18,
-    color: "#fff",
-    fontWeight: "600",
+  button: {
+    width: 120, 
+    height: 100,
+    margin: 10,
+    borderRadius: 15,
+    marginVertical: 10,
+    backgroundColor: '#4f3d56', // Adjust the button color as needed
+    justifyContent: 'center', 
+    alignItems: 'center',
   },
-  selectLangaugeBtn: {
-    width: "50%",
-    height: 50,
-    borderRadius: 10,
-    position: "absolute",
-    alignSelf: "center",
-    bottom: 20,
-    justifyContent: "center",
-    alignItems: "center",
-    marginTop: 20,
-  },
-
-  languagesList: {
-    width: "100%",
-  },
-
-  languageButton: {
-    screenWidth: "100%",
-    padding: 10,
-    borderBottomColor: "white",
-    borderBottomWidth: 1,
-  },
-  lngName: {
-    fontSize: 16,
-    color: "white",
+  buttonText: {
+    fontSize: 24,
+    color: 'white',
+    textAlign: 'center',
+    
   },
 });
