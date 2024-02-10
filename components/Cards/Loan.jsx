@@ -42,18 +42,18 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
   },
   name: {
-    fontSize: 16,
+    fontSize: 14,
     fontWeight: 'bold',
     color: '#999',
     marginBottom: 5,
   },
   amount: {
-    fontSize: 24,
+    fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 5,
   },
   dueDate: {
-    fontSize: 20,
+    fontSize: 18,
     fontWeight: 'bold',
     color: 'red', // or any color to highlight due date
   },

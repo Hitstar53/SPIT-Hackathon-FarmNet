@@ -1,6 +1,7 @@
 import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Modal, FlatList, TouchableOpacity } from "react-native";
 import { Stack } from "expo-router";
+import { useFonts } from 'expo-font';
 import BankCard from "../../components/Cards/BankCard";
 import CreditScore from "../../components/Cards/CreditScore";
 import SquareCard from "../../components/Cards/SquareCard";
@@ -14,40 +15,6 @@ const Home = () => {
 
 
   return (
-    // <View style={styles.container1}>
-    //   <Stack.Screen
-    //     options={{
-    //       headerStyle: { backgroundColor: "#fff" },
-    //       headerShadowVisible: false,
-    //       headerTitle: "",
-    //     }}
-    //   />
-
-    //   <View style={styles.container2}>
-    //     <View style={{ flexDirection: "row" }}>
-    //       <Image
-    //         source={require("../../assets/ppl.webp")}
-    //         style={styles.profilePic}
-    //       />
-    //   <View style={styles.userDetails}>
-    //     //         <Text style={styles.greetingText}>Hello,</Text>
-    //     //         <Text style={styles.customerName}>Vineet Parmar</Text>
-    //     //       </View>
-    //     </View>
-
-    //     <CreditScore creditScore="750" />
-    //   </View>
-    //   <View>
-    //     <BankCard
-    //       BankName="HDFC Bank"
-    //       cardNumber="1234 5678 9012 3456"
-    //       cardHolder="John Doe"
-    //       expiryDate="12/24"
-    //     />
-    //   </View>
-    //   {/* <Navbar /> */}
-    // </View>
-
     <View style={styles.container}>
 
       <Stack.Screen
@@ -74,7 +41,7 @@ const Home = () => {
         </View>
 
         <View style={{ marginLeft: 50 }}>
-          <CreditScore creditScore="750" />
+          <CreditScore creditScore="600" />
         </View>
       </View>
 
@@ -152,6 +119,7 @@ const styles = StyleSheet.create({
     alignItems: "flex-start",
   },
   greetingText: {
+    fontFamily: "HankenBook",
     fontSize: 18,
     marginBottom: 3,
     fontWeight: "bold",

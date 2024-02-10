@@ -16,6 +16,60 @@ const PayLoan = () => {
       amount: '$300.00',
       dueDate: '2024-03-15',
     },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
+    {
+      profilePic: 'https://example.com/profile-pic-2.jpg',
+      name: 'Jane Smith',
+      amount: '$300.00',
+      dueDate: '2024-03-15',
+    },
     // Add more loan data as needed
   ];
 
@@ -40,12 +94,13 @@ const PayLoan = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 15,
+    padding: 0,
   },
   title: {
     fontSize: 20,
     fontWeight: 'bold',
     marginBottom: 15,
+    margin: 15,
   },
 });
 
