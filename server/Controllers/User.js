@@ -1,82 +1,66 @@
 import User from "../Models/User.js";
-import mongoose from "mongoose";
-import bcrypt from "bcrypt";
-import jwt from "jsonwebtoken";
 
+const createUser = async (req, res) => {
+    try {
+        const { aadhar, phoneno, firstname, lastname, dob, aadharimg, profileimg } = req.body;
+        const user = await User.create({
+        aadhar,
+        phoneno,
+        firstname,
+        lastname,
+        dob,
+        aadharimg,
+        profileimg,
+        });
+        res.status(201).json({ user });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+}
 
 const getUsers = async (req, res) => {
     try {
-        const users = await User.find();
-        res.status(200).json(users);
+        const user = await User.find();
+        res.status(200).json({ user });
     } catch (error) {
-        res.status(404).json({ message: error.message });
-    }
-}
-
-const createUser = async (req, res) => {
-    const user = req.body;
-    const u = User.findOne({ email: user.email });
-    if (u) {
-        res.status(400).json({ message: "User already exists" });
-    }
-    const newUser = new User(user, bcrypt.hash(user.password, 12));
-    try {
-        await newUser.save();
-        res.status(201).json(newUser);
-    } catch (error) {
-        res.status(409).json({ message: error.message });
-    }
-}
-
-const loginUser = async (req, res) => {
-    const { email, password } = req.body;
-
-    try {
-        const user = User.findOne({ email });
-        if (!user) {
-            res.status(404).json({ message: "User doesn't exist" });
-        }
-        const isPasswordCorrect = bcrypt.compare(password, user.password);
-        if (!isPasswordCorrect) {
-            res.status(400).json({ message: "Invalid credentials" });
-        }
-        const token = jwt.sign({ email: user.email, id: user._id }, "test", { expiresIn: "1h" });
-        res.status(200).json({ result: user, token });
-    } catch (error) {
-        res.status(500).json({ message: error.message });
-    }
-
-}
-
-const getUser = async (req, res) => {
-    const { id } = req.params;
-    try {
-        const user = User.findById(id);
-        res.status(200).json(user);
-    } catch (error) {
-        res.status(404).json({ message: error.message });
+        res.status(500).json({ error: error.message });
     }
 }
 
 const updateUser = async (req, res) => {
-    const { id } = req.params;
-    const user = req.body;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(404).json({ message: "No user with that id" });
+    try {
+        const { aadhar, phoneno, firstname, lastname, dob, aadharimg, profileimg } = req.body;
+        const user = await User.findOneAndUpdate(
+        { aadhar },
+        { aadhar, phoneno, firstname, lastname, dob, aadharimg, profileimg },
+        { new: true }
+        );
+        res.status(200).json({ user });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
     }
-    const updatedUser = await User.findByIdAndUpdate(id, { ...user, id }, { new: true });
-    res.status(200).json(updatedUser);
 }
 
 const deleteUser = async (req, res) => {
-    const { id } = req.params;
-    if (!mongoose.Types.ObjectId.isValid(id)) {
-        res.status(404).json({ message: "No user with that id" });
+    try {
+        const { aadhar } = req.body;
+        const user = await User.findOneAndDelete({ aadhar });
+        res.status(200).json({ user });
     }
-    await User.findByIdAndRemove(id);
-    res.status(200).json({ message: "User deleted successfully" });
+    catch (error) {
+        res.status(500).json({ error: error.message });
+    }
 }
 
+const getUserByAadhar = async (req, res) => {
+    try {
+        const { aadhar } = req.params;
+        const user = User.findOne({ aadhar });
+        res.status(200).json({ user });
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
 
-export { getUsers, createUser, loginUser, getUser, updateUser, deleteUser };
+}
 
+export { createUser, getUsers, updateUser, deleteUser, getUserByAadhar };
