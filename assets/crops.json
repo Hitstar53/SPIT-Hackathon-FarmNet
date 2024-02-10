@@ -1,0 +1,112 @@
+[
+  {
+    "name": "apple",
+    "description": "Apple is a sweet and crunchy fruit that comes in various colors, including red and green.",
+    "imageUrl": "https://unsplash.com/photos/red-apple-fruit-tree-during-daytime-XjsUAp4KhQk"
+  },
+  {
+    "name": "banana",
+    "description": "Banana is a tropical fruit with a yellow peel and a soft, creamy inside.",
+    "imageUrl": "https://unsplash.com/photos/pile-of-bananas-85Cv18FAvEk"
+  },
+  {
+    "name": "blackgram",
+    "description": "Blackgram, also known as urad dal, is a type of pulse widely used in Indian cuisine.",
+    "imageUrl": "https://example.com/blackgram-image.jpg"
+  },
+  {
+    "name": "chickpea",
+    "description": "Chickpea, also known as garbanzo bean, is a versatile legume used in various dishes.",
+    "imageUrl": "https://unsplash.com/photos/green-and-white-snake-on-brown-soil-I3lUzy2CSik"
+  },
+  {
+    "name": "coconut",
+    "description": "Coconut is a tropical fruit with a hard shell and sweet, refreshing coconut water.",
+    "imageUrl": "https://unsplash.com/photos/coconut-trees-on-green-grass-field-RBMaKczTTJE"
+  },
+  {
+    "name": "coffee",
+    "description": "Coffee is a popular beverage made from roasted coffee beans, providing a rich and energizing flavor.",
+    "imageUrl": "https://unsplash.com/photos/coffee-bean-lot-TD4DBagg2wE"
+  },
+  {
+    "name": "cotton",
+    "description": "Cotton is a soft, fluffy fiber used in the production of textiles and fabrics.",
+    "imageUrl": "https://unsplash.com/photos/field-of-cotton-trees-pyud8ZaVq4I"
+  },
+  {
+    "name": "grapes",
+    "description": "Grapes are small, juicy fruits available in various colors, commonly used for making wine.",
+    "imageUrl": "https://unsplash.com/photos/green-grapes-9p3HzaZMC4g"
+  },
+  {
+    "name": "jute",
+    "description": "Jute is a natural fiber commonly used in the production of burlap and other coarse fabrics.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/9/9e/Jute_Field_Bangladesh_%287749587518%29.jpg"
+  },
+  {
+    "name": "kidneybeans",
+    "description": "Kidney beans are a type of legume with a kidney-shaped appearance, often used in salads and stews.",
+    "imageUrl": "https://i.etsystatic.com/26890408/r/il/6a0b0f/3531024707/il_570xN.3531024707_o7fy.jpg"
+  },
+  {
+    "name": "lentil",
+    "description": "Lentil is a nutritious pulse known for its lens-shaped seeds, commonly used in soups and curries.",
+    "imageUrl": "https://cdn.britannica.com/54/148154-050-91F7CB39/Lentil.jpg"
+  },
+  {
+    "name": "maize",
+    "description": "Maize, also known as corn, is a staple cereal crop used for various culinary purposes.",
+    "imageUrl": "https://miro.medium.com/v2/resize:fit:1400/1*jbTvZY0h4uX0I2Nsg1FEUQ.jpeg"
+  },
+  {
+    "name": "mango",
+    "description": "Mango is a tropical fruit with a sweet and tangy flavor, enjoyed fresh or in various dishes.",
+    "imageUrl": "https://5.imimg.com/data5/VB/SN/RR/SELLER-35873942/mango-plant.jpg"
+  },
+  {
+    "name": "mothbeans",
+    "description": "Moth beans are small, drought-tolerant legumes commonly grown in arid regions.",
+    "imageUrl": "https://example.com/mothbeans-image.jpg"
+  },
+  {
+    "name": "mungbean",
+    "description": "Mung bean is a green legume commonly used in Asian cuisine, known for its nutritional benefits.",
+    "imageUrl": "https://example.com/mungbean-image.jpg"
+  },
+  {
+    "name": "muskmelon",
+    "description": "Muskmelon, also known as cantaloupe, is a sweet and fragrant melon with orange flesh.",
+    "imageUrl": "https://m.media-amazon.com/images/I/71fMMkZcyoL._AC_UF1000,1000_QL80_.jpg"
+  },
+  {
+    "name": "orange",
+    "description": "Orange is a citrus fruit known for its juicy and tangy flavor, rich in vitamin C.",
+    "imageUrl": "https://plantskingdom.in/cdn/shop/products/ppp_525x700.jpg?v=1659779636"
+  },
+  {
+    "name": "papaya",
+    "description": "Papaya is a tropical fruit with orange flesh and a sweet taste, packed with vitamins and enzymes.",
+    "imageUrl": "https://nurserylive.com/cdn/shop/products/nurserylive-plants-papaya-papita-hybrid-plant-16969157607564.jpg?v=1634225434"
+  },
+  {
+    "name": "pigeonpeas",
+    "description": "Pigeon peas are a legume commonly used in Indian cuisine, known for their nutty flavor.",
+    "imageUrl": "https://example.com/pigeonpeas-image.jpg"
+  },
+  {
+    "name": "pomegranate",
+    "description": "Pomegranate is a red, juicy fruit with seeds inside, known for its antioxidant properties.",
+    "imageUrl": "https://example.com/pomegranate-image.jpg"
+  },
+  {
+    "name": "rice",
+    "description": "Rice is a staple food grain consumed worldwide, available in various varieties and preparations.",
+    "imageUrl": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/0a/20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg/800px-20201102.Hengnan.Hybrid_rice_Sanyou-1.6.jpg"
+  },
+  {
+    "name": "watermelon",
+    "description": "Watermelon is a refreshing fruit with sweet, juicy flesh and a high water content.",
+    "imageUrl": "https://www.thespruce.com/thmb/FQEJK_TMRNcnZfQr97S6GZGaJVY=/1500x0/filters:no_upscale():max_bytes(150000):strip_icc()/how-to-grow-watermelons-1403491-hero-2d1ce0752fed4ed599db3ba3b231f8b7.jpg"
+  }
+]

@@ -106,7 +106,6 @@ const styles = StyleSheet.create({
     flex: 1,
     flexDirection: "column",
     justifyContent: "space-between",
-    backgroundColor: "#fff",
   },
   sqcontainer: {
     flex: 1,
