@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
 import {useRouter} from 'expo-router';
-import { icons } from '../../constants';
+// import { icons } from '../../constants';
 
 const Navbar = () => {
     const router = useRouter();
@@ -12,20 +12,20 @@ const Navbar = () => {
         onPress={() => {
             router.push("/games-section/Games");
         }}>
-        <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-left.png') }/>
+        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-left.png') }/> */}
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
             router.push("/games-section/Games");
         }}>
-        <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/location.png') }/>
+        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/location.png') }/> */}
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => {
             router.push("/games-section/Games");
         }}>
-        <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-right.png') }/>
+        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-right.png') }/> */}
       </TouchableOpacity>
     </View>
   );
