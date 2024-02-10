@@ -14,8 +14,8 @@ const Home = () => {
                     headerTitle: ""
                 }}
             />
-            <View style={styles.container}>
 
+            <View style={styles.container}>
                 <View>
                     <TouchableOpacity
                         style={styles.btn}
@@ -32,6 +32,15 @@ const Home = () => {
                         }}>
                         <Text style={styles.btnText}>User Login</Text>
                     </TouchableOpacity>
+
+                    <TouchableOpacity
+                        style={styles.selectLangaugeBtn}
+                        onPress={() => {
+                            setLangModalVisible(!langModalVisible);
+                        }}>
+                        <Text>Select Language</Text>
+                    </TouchableOpacity>
+
                 </View>
 
             </View>
@@ -49,7 +58,7 @@ const styles = StyleSheet.create({
 
 
     btn: {
-        backgroundColor: 'purple',
+        backgroundColor: 'black',
         height: 50,
         width: '90%',
         borderRadius: 10,
@@ -58,7 +67,8 @@ const styles = StyleSheet.create({
         marginTop: 30,
     },
     btnText: {
-        fontSize: 18,
+        padding: 10,
+        fontSize: 14,
         color: '#fff',
         fontWeight: '600',
     },
