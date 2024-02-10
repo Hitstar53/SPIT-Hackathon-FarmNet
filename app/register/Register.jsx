@@ -1,8 +1,6 @@
-import React from "react";
-import NewScreen from "../../components/Scroll/HorizontalScroll";
+import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
-import { useRef, useState } from "react";
 import {
   View,
   ScrollView,
@@ -13,12 +11,44 @@ import {
   TextInput,
 } from "react-native";
 
+import * as Location from 'expo-location';
+
+
 const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const Register = () => {
 
   const { t } = useTranslation();
+
+  const [location, setLocation] = useState(null);
+  const [errorMsg, setErrorMsg] = useState(null);
+
+  useEffect(() => {
+    (async () => {
+
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        setErrorMsg('Permission to access location was denied');
+        return;
+      }
+
+      let location = await Location.getCurrentPositionAsync({});
+      console.log(location)
+      setLocation(location);
+    })();
+  }, []);
+
+  let text = 'Waiting..';
+  if (errorMsg) {
+    text = errorMsg;
+  } else if (location) {
+    text = JSON.stringify(location);
+  }
+
+  
+
+
 
   const scrollViewRef = useRef(null);
   const [scrollOffset, setScrollOffset] = useState(0);

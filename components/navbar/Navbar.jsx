@@ -1,29 +1,30 @@
 import React from 'react';
-import {View, StyleSheet, Image, TouchableOpacity} from 'react-native';
-import {useRouter} from 'expo-router';
+import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
+import { useRouter } from 'expo-router';
 // import { icons } from '../../constants';
 
 const Navbar = () => {
-    const router = useRouter();
+  const router = useRouter();
 
   return (
     <View style={styles.root}>
       <TouchableOpacity
         onPress={() => {
-            router.push("/games-section/Games");
+          router.push("/games-section/Games");
         }}>
-        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-left.png') }/> */}
+        <Image style={styles.image} source={require('../../assets/home.png')} />
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-            router.push("/games-section/Games");
+          router.push("/Chatbot/Chatbot");
         }}>
-        {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/location.png') }/> */}
+        <Image source={require('../../assets/chatbot.png')} style={styles.image} />
+ 
       </TouchableOpacity>
 
       <TouchableOpacity
         onPress={() => {
-            router.push("/games-section/Games");
+          router.push("/games-section/Games");
         }}>
         {/* <Image style={styles.image} source={ require('D:/Programming/expo_router_tutorial/assets/icons/chevron-right.png') }/> */}
       </TouchableOpacity>
