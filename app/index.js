@@ -1,87 +1,88 @@
 import { View, Text, TouchableOpacity, StyleSheet, SafeAreaView, TextInput } from 'react-native';
 import { useRouter, Stack } from 'expo-router';
+import { useState } from 'react';
+import LanguageModal from '../components/navbar/LanguageModal';
 
-const Home = () => {
-
+const LandingPage = () => {
+    
     const router = useRouter();
+    const [langModalVisible, setLangModalVisible] = useState(false);
 
     return (
-        <SafeAreaView>
-            <Stack.Screen
-                options={{
-                    headerStyle: { backgroundColor: '#fff' },
-                    headerShadowVisible: false,
-                    headerTitle: ""
-                }}
-            />
-
-            <View style={styles.container}>
-                <View>
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={() => {
-                            // navigation.navigate('Login');
-                        }}>
-                        <Text style={styles.btnText}>Admin Login</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={styles.btn}
-                        onPress={() => {
-                            // navigation.navigate('UserLogin');
-                        }}>
-                        <Text style={styles.btnText}>User Login</Text>
-                    </TouchableOpacity>
-
-                    <TouchableOpacity
-                        style={styles.selectLangaugeBtn}
-                        onPress={() => {
-                            setLangModalVisible(!langModalVisible);
-                        }}>
-                        <Text>Select Language</Text>
-                    </TouchableOpacity>
-
-                </View>
-
-            </View>
-        </SafeAreaView>
-    )
-}
+      <View style={styles.container}>
+        <Text style={styles.title}>
+          Welcome
+        </Text>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            
+          }}>
+          <Text style={styles.btnText}>Lending Institute</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.btn}
+          onPress={() => {
+            
+          }}>
+          <Text style={styles.btnText}>User</Text>
+        </TouchableOpacity>
+        <TouchableOpacity
+          style={styles.selectLangaugeBtn}
+          onPress={() => {
+            setLangModalVisible(true);
+          }}>
+          <Text>Select Language</Text>
+        </TouchableOpacity>
+        <LanguageModal
+          langModalVisible={langModalVisible}
+          setLangModalVisible={setLangModalVisible}
+        //   onSelectLang={x => {
+        //     setSelectedLang(x);
+        //     saveSelectedLang(x);
+        //   }}
+        />
+      </View>
+    );
+  };
+  
+  export default LandingPage;
 
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
-        flex: 1,
-        justifyContent: 'center',
-        alignItems: 'center'
+      flex: 1,
+      justifyContent: 'center',
+      alignItems: 'center',
     },
-
-
+    title: {
+      fontSize: 20,
+      fontWeight: '700',
+    },
     btn: {
-        backgroundColor: 'black',
-        height: 50,
-        width: '90%',
-        borderRadius: 10,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginTop: 30,
+      backgroundColor: 'black',
+      height: 50,
+      width: '70%',
+      borderRadius: 10,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 30,
     },
     btnText: {
-        padding: 10,
-        fontSize: 14,
-        color: '#fff',
-        fontWeight: '600',
+      fontSize: 18,
+      color: '#fff',
+      fontWeight: '600',
     },
-
-
-
-
-
-
-});
-
-
-
-
-
-export default Home;
+    selectLangaugeBtn: {
+      width: '50%',
+      height: 50,
+      borderWidth: 0.2,
+      borderRadius: 10,
+      position: 'absolute',
+      alignSelf: 'center',
+      bottom: 20,
+      justifyContent: 'center',
+      alignItems: 'center',
+      marginTop: 20,
+    },
+  });
