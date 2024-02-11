@@ -64,7 +64,7 @@ const getUserByAadhar = async (req, res) => {
 
 const getUserByphone = async (req, res) => {
     try {
-        const { phoneno } = req.params;
+        const { phoneno } = req.body;
         const res = await User.find({ phoneno:phoneno });
         res.status(200).json({ res });
     }catch(error){

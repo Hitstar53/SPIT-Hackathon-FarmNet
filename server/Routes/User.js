@@ -8,6 +8,6 @@ router.get("/", getUsers);
 router.put("/", updateUser);
 router.delete("/", deleteUser);
 router.get("/:aadhar", getUserByAadhar);
-router.get("/:phoneno", getUserByphone);
+router.post("/phoneno", getUserByphone);
 
 export default router;
