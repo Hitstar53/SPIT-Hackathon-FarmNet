@@ -2,8 +2,8 @@ const express = require("express");
 const authRouter = express.Router();
 const User = require("../Models/User");
 const jwt = require("jsonwebtoken");
-const accountSid = "ACcb14cbaded6b9a1e64e7e5e9808f4d6d";
-const authToken = "9f670700d31513e6bab6ae80220934be";
+const accountSid = process.env.TWILIO_ACCOUNT_SID;
+const authToken = process.env.TWILIO_AUTH_TOKEN;
 const client = require("twilio")(accountSid, authToken);
 
 let OTP, user, signinUser;
