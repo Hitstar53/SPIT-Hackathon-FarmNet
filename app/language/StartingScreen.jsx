@@ -115,6 +115,12 @@ const LandingPage = () => {
         <Text style={styles.btnText}>Pay Loan</Text>
       </TouchableOpacity>
 
+      <TouchableOpacity style={styles.btn} onPress={() => { 
+        router.push("/crop/SellCrop")
+       }}>
+        <Text style={styles.btnText}>Sell Crop</Text>
+      </TouchableOpacity>
+
       <TouchableOpacity
         style={styles.selectLangaugeBtn}
         onPress={() => {
