@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Modal, FlatList, TouchableOpacity } from "react-native";
 import { Stack, useRouter } from "expo-router";
 import { useFonts } from 'expo-font';
@@ -7,9 +7,32 @@ import CreditScore from "../../components/Cards/CreditScore";
 import SquareCard from "../../components/Cards/SquareCard";
 import Navbar from "../../components/navbar/Navbar";
 import { useTranslation } from "react-i18next";
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Home = () => {
-  const router = useRouter();
+
+  const [name, setName] = useState("");
+ 
+
+ 
+
+  useEffect(() => { 
+    const getData = async () => {
+      try {
+        const value = await AsyncStorage.getItem('name');
+        if (value !== null) {
+          // value previously stored
+          setName(value);
+        }
+      } catch (e) {
+        // error reading value
+      }
+    };
+
+    getData();
+  }, []);
+
+  
   const { t } = useTranslation();
   const [langModalVisible, setLangModalVisible] = useState(false);
 
@@ -37,7 +60,7 @@ const Home = () => {
 
         <View style={styles.userDetails}>
           <Text style={styles.greetingText}>{t("hello")}</Text>
-          <Text style={styles.customerName}>Vineet Parmar</Text>
+          <Text style={styles.customerName}>{name}</Text>
         </View>
 
         <View style={{ marginLeft: 50 }}>

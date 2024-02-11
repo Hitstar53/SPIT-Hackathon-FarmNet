@@ -117,6 +117,13 @@ const Register = () => {
     5: "loamy",
   };
 
+  const [temperature, setTemperature] = useState();
+  const [humidity, setHumidity] = useState();
+
+
+
+  const [userOfflineData, setUserOfflineData] = useState({});
+
   const removeImage = async () => {
     try {
       setImage(null);
@@ -235,6 +242,9 @@ const Register = () => {
         // console.log("weather", data)
         console.log(data["current"]["temp_c"]);
         console.log(data["current"]["humidity"]);
+
+        setTemperature(data["current"]["temp_c"]);
+        setHumidity(data["current"]["humidity"]);
       } catch (error) {
         console.error("Error fetching weather data:", error);
       }
@@ -285,6 +295,9 @@ const Register = () => {
   };
 
   const handleSubmit = async () => {
+
+    await storeData();
+
     // axios code to post data
 
     const userdata = {
@@ -295,6 +308,23 @@ const Register = () => {
       dob: dob,
       name: aadhaarName,
     };
+
+    const data = {
+      aadhaarName: aadhaarName,
+      aadharNumber: aadharnumber,
+      mobileNumber: mobileNumber,
+      dob: dob,
+      aadhaarImage: aadhaarImage,
+      userImage: userImage,
+      farmSize: farmSize,
+      annualRevenue: annualRevenue,
+      soilType: soils[soilType],
+      typeOfCrops: cropsList,
+      temperature: temperature,
+      humidity: humidity,
+    }
+    setUserOfflineData(data)
+
     console.log(userdata);
     try {
       const res = await axios.post(
@@ -442,7 +472,7 @@ const Register = () => {
                 />
               )}
 
-              <Text style={styles.FarmText}>{ t("aadhaarPhoto") }</Text>
+              <Text style={styles.FarmText}>{t("aadhaarPhoto")}</Text>
 
               {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
               <TouchableOpacity
@@ -452,7 +482,7 @@ const Register = () => {
                   setImageType("aadhaar");
                 }}
               >
-                <Text style={styles.buttonText}> { t("uploadPhoto") } </Text>
+                <Text style={styles.buttonText}> {t("uploadPhoto")} </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -476,21 +506,21 @@ const Register = () => {
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => uploadImage()}
                     >
-                      <Text style={styles.textStyle}> { t("camera") } </Text>
+                      <Text style={styles.textStyle}> {t("camera")} </Text>
                     </Pressable>
 
                     <Pressable
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => selectGalleryImage()}
                     >
-                      <Text style={styles.textStyle}> { t("gallery") } </Text>
+                      <Text style={styles.textStyle}> {t("gallery")} </Text>
                     </Pressable>
 
                     <Pressable
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => removeImage()}
                     >
-                      <Text style={styles.textStyle}> { t("remove") } </Text>
+                      <Text style={styles.textStyle}> {t("remove")} </Text>
                     </Pressable>
                   </View>
                 </View>
@@ -512,7 +542,7 @@ const Register = () => {
                 />
               )}
 
-              <Text style={styles.FarmText}> { t("uploadPhoto") } </Text>
+              <Text style={styles.FarmText}> {t("uploadPhoto")} </Text>
 
               {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
               <TouchableOpacity
@@ -523,7 +553,7 @@ const Register = () => {
                 }}
               >
                 {/* <Text style={styles.buttonText}>User Image</Text> */}
-                <Text style={styles.buttonText}>{ t("uploadPhoto") }</Text>
+                <Text style={styles.buttonText}>{t("uploadPhoto")}</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -536,7 +566,7 @@ const Register = () => {
                 autoPlay
                 loop
               />
-              <Text style={styles.FarmText}> { t("farmSize") } </Text>
+              <Text style={styles.FarmText}> {t("farmSize")} </Text>
               <TextInput
                 style={styles.amountInput}
                 placeholder="Enter amount"
@@ -554,7 +584,7 @@ const Register = () => {
                 autoPlay
                 loop
               />
-              <Text style={styles.FarmText}> { t("annualRevenue") } </Text>
+              <Text style={styles.FarmText}> {t("annualRevenue")} </Text>
               <TextInput
                 style={styles.amountInput}
                 placeholder={t("annualRevenue")}
@@ -566,7 +596,7 @@ const Register = () => {
           </View>
 
           <View style={[styles.column, { width: screenWidth }]}>
-            <TouchableOpacity onPress={() => handleSubmit()}>
+            <TouchableOpacity>
 
               <Text style={{ fontSize: 18 }}> Soil Type </Text>
             </TouchableOpacity>
@@ -575,7 +605,7 @@ const Register = () => {
               {/*Generate two buttons with set background images and text above */}
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("claySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("claySoil")}</Text>
                 <TouchableOpacity onPress={() => setSoilType(0)}>
                   <Image
                     style={styles.soilImageContainer}
@@ -585,7 +615,7 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("sandySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("sandySoil")}</Text>
                 <TouchableOpacity onPress={() => setSoilType(1)}>
                   <Image
                     style={styles.soilImageContainer}
@@ -595,7 +625,7 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("siltySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("siltySoil")}</Text>
 
                 <TouchableOpacity onPress={() => setSoilType(2)}>
                   <Image
@@ -606,7 +636,7 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("peatySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("peatySoil")}</Text>
                 <TouchableOpacity onPress={() => setSoilType(3)}>
                   <Image
                     style={styles.soilImageContainer}
@@ -616,7 +646,7 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("chalkySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("chalkySoil")}</Text>
                 <TouchableOpacity onPress={() => setSoilType(4)}>
                   <Image
                     style={styles.soilImageContainer}
@@ -626,7 +656,7 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("loamySoil") }</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{t("loamySoil")}</Text>
 
                 <TouchableOpacity onPress={() => setSoilType(5)}>
                   <Image
@@ -689,10 +719,15 @@ const Register = () => {
             currPage > 0 ? setCurrPage(currPage - 1) : setCurrPage(0);
           }}
         >
-          <Image
-            style={styles.navigataionBtn}
-            source={require("../../assets/arrow.png")}
-          />
+          <TouchableOpacity
+            onPress={() => handleSubmit()}
+          >
+            <Image
+              style={styles.navigataionBtn}
+              source={require("../../assets/arrow.png")}
+            />
+          </TouchableOpacity>
+
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.scrollArrowButton}
