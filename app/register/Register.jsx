@@ -2,7 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
 import { Stack } from "expo-router";
-import {
+import DateTimePicker from '@react-native-community/datetimepicker'; import {
   View,
   ScrollView,
   StyleSheet,
@@ -47,7 +47,6 @@ const Register = () => {
   const [modalVisible, setModalVisible] = useState(false);
   const [image, setImage] = useState();
   const [aadharnumber, setAadharNumber] = useState();
-  const [name, setName] = useState();
   const [farmSize, setFarmSize] = useState();
   const [annualRevenue, setAnnualRevenue] = useState();
   const [soilType, setSoilType] = useState();
@@ -60,6 +59,12 @@ const Register = () => {
 
   const [userImageURL, setUserImageURL] = useState();
   const [aadhaarImageURL, setAadhaarImageURL] = useState();
+
+  const [mobileNumber, setMobileNumber] = useState();
+  const [dob, setDob] = useState();
+
+
+  const [aadhaarName, setAadhaarName] = useState();
 
   const soils = {
     0: "Clay",
@@ -225,7 +230,7 @@ const Register = () => {
     handleScroll(newOffset);
   };
 
-  const numColumns = 6;
+  const numColumns = 7;
 
   const getLang = async () => {
     const lang = await AsyncStorage.getItem("lang");
@@ -261,19 +266,17 @@ const Register = () => {
             <TextInput
               style={styles.textInput}
               placeholder="Enter your name here"
-              // onChangeText={setEmail}
-              // value={email}
-              onChangeText={(text) => setName(text)}
+
+              onChangeText={setAadhaarName}
+              value={aadhaarName}
             />
             <Text style={styles.text}>Aadhar Number</Text>
             <TextInput
               style={styles.textInput}
               placeholder="Aadhaar Number"
-              // onChangeText={setPassword}
-              // value={password}
-              // secureTextEntry={true}
               onChangeText={(text) => setAadharNumber(text)}
             />
+
             <TouchableOpacity style={styles.button}
               onPress={handleRightScroll}
 
@@ -283,6 +286,33 @@ const Register = () => {
               </View>
             </TouchableOpacity>
           </View>
+
+
+          <View style={[styles.column, { width: screenWidth }]}>
+
+
+            <Text style={styles.text}>Mobile Number</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Aadhaar Number"
+              onChangeText={(text) => setMobileNumber(text)}
+            />
+
+            <Text style={styles.text}>Date of birth</Text>
+            <TextInput
+              style={styles.textInput}
+              placeholder="Aadhaar Number"
+              // onChangeText={setPassword}
+              // value={password}
+              // secureTextEntry={true}
+              onChangeText={(text) => setDob(text)}
+            />
+
+          </View>
+
+
+
+
           <View style={[styles.column, { width: screenWidth }]}>
             <View style={styles.innerContainer}>
               <Modal
@@ -451,7 +481,7 @@ const Register = () => {
           </View>
 
           <View style={[styles.column, { width: screenWidth }]}>
-            <Text> Soil Type </Text>
+            <Text style={{ fontSize: 18 }}> Soil Type </Text>
             <View style={styles.soilImageContainers}>
               {/* First row */}
               {/*Generate two buttons with set background images and text above */}
@@ -459,6 +489,8 @@ const Register = () => {
                 style={styles.soilImageContainer}
                 onPress={() => setSoilType(0)}
               >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>Clay</Text>
+
                 <Image
                   style={styles.soilImageContainer}
                   source={require("../../assets/soil/clay.jpg")}
@@ -466,53 +498,68 @@ const Register = () => {
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.soilImageContainer}
-                onPress={() => setSoilType(0)}
+                onPress={() => setSoilType(1)}
               >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>sandy</Text>
                 <Image
                   style={styles.soilImageContainer}
-                  source={require("../../assets/soil/clay.jpg")}
+                  source={require("../../assets/soil/sandy.jpg")}
                 />
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.soilImageContainer}
-                onPress={() => setSoilType(0)}
+                onPress={() => setSoilType(2)}
               >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>Slity</Text>
                 <Image
                   style={styles.soilImageContainer}
-                  source={require("../../assets/soil/clay.jpg")}
+                  source={require("../../assets/soil/slity.jpg")}
+                />
+              </TouchableOpacity>
+
+              <TouchableOpacity
+                style={styles.soilImageContainer}
+                onPress={() => setSoilType(3)}
+              >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>Peaty</Text>
+                <Image
+                  style={styles.soilImageContainer}
+                  source={require("../../assets/soil/peaty.jpg")}
                 />
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.soilImageContainer}
-                onPress={() => setSoilType(0)}
+                onPress={() => setSoilType(4)}
               >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>chalky</Text>
+
                 <Image
                   style={styles.soilImageContainer}
-                  source={require("../../assets/soil/clay.jpg")}
+                  source={require("../../assets/soil/chalky.jpg")}
                 />
               </TouchableOpacity>
               <TouchableOpacity
                 style={styles.soilImageContainer}
-                onPress={() => setSoilType(0)}
+                onPress={() => setSoilType(5)}
               >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>Loam</Text>
+
                 <Image
                   style={styles.soilImageContainer}
-                  source={require("../../assets/soil/clay.jpg")}
-                />
-              </TouchableOpacity>
-              <TouchableOpacity
-                style={styles.soilImageContainer}
-                onPress={() => setSoilType(0)}
-              >
-                <Image
-                  style={styles.soilImageContainer}
-                  source={require("../../assets/soil/clay.jpg")}
+                  source={require("../../assets/soil/loamy.jpg")}
                 />
               </TouchableOpacity>
             </View>
           </View>
           {/* Add more columns as needed */}
+          <TouchableOpacity style={styles.button} >
+            <View>
+              <Text>Submit</Text>
+            </View>
+          </TouchableOpacity>
         </View>
+
+
       </ScrollView>
       {/* Buttons for scrolling */}
       <View style={styles.buttonArrowContainer}>
