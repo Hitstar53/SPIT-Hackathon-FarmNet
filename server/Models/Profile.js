@@ -38,10 +38,6 @@ const ProfileSchema = new mongoose.Schema({
         type: String,
         required: true,
     },
-    debit:{
-        type: String,
-        required: true,
-    },
 
 });
 
