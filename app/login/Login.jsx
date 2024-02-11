@@ -15,41 +15,16 @@ import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
 import LottieView from "lottie-react-native";
 
-// import axios from 'axios';
+
+import axios from "axios";
 
 const Login = () => {
-  // const submitPressed = async () => {
-  //   try {
-  //     axios
-  //       .get(
-  //         `${backendUrl}/api/user/userexists?email=${email}&password=${password}`,
-  //       )
-  //       .then(response => {
-  //         console.log(response.data);
-  //         if (response.data['SUCCESS'] == 'TRUE') {
-  //           Alert.alert('SUCCESS');
-  //           setTimeout(() => {
-  //             navigation.navigate('AllDoctorsPage');
-  //           }, 3000);
-  //         } else {
-  //           Alert.alert('Invalid Email/Password');
-  //         }
-  //       })
-  //       .catch(error => {
-  //         console.log(error);
-  //         Alert.alert('Invalid Email/Password');
-  //       });
-  //   } catch (ex) {
-  //     console.log(ex);
-  //   }
-  // };
-
   const [email, setEmail] = useState();
   const [password, setPassword] = useState();
   const [pin, setPin] = useState(["", "", "", ""]);
   const pinInputs = [useRef(), useRef(), useRef(), useRef()];
 
-  const router =  useRouter();
+  const router = useRouter();
 
   const handlePinChange = (index, value) => {
     const newPin = [...pin];
@@ -70,6 +45,11 @@ const Login = () => {
       i18n.changeLanguage(lang);
     }
   };
+
+
+  
+
+  // Call the function to make the API request
 
   return (
     <View style={styles.root}>
@@ -98,6 +78,11 @@ const Login = () => {
           onChangeText={setEmail}
           value={email}
         />
+        <View style={styles.registerContainer}>
+          <TouchableOpacity onPress={() => console.log("working")}>
+            <Text style={styles.registerBtn}>{t("OTP")}</Text>
+          </TouchableOpacity>
+        </View>
         <Text style={styles.text}>{t("password")}</Text>
         <View style={styles.pinContainer}>
           {pin.map((digit, index) => (
@@ -122,9 +107,11 @@ const Login = () => {
           ))}
         </View>
 
-        <View style={styles.registerContainer} >
-          <Text style={{fontSize:18}}>{t("newUser")}?</Text>
-          <TouchableOpacity onPress = {()=> router.push('/register/Register')}><Text style={styles.registerBtn} >{t("register")}</Text></TouchableOpacity>
+        <View style={styles.registerContainer}>
+          <Text style={{ fontSize: 18 }}>{t("newUser")}?</Text>
+          <TouchableOpacity onPress={() => router.push("/register/Register")}>
+            <Text style={styles.registerBtn}>{t("register")}</Text>
+          </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}>
           <View>
@@ -212,18 +199,18 @@ const styles = StyleSheet.create({
     marginLeft: 15, // Adjust the spacing between text inputs
   },
 
-  registerContainer:{
+  registerContainer: {
     marginTop: 15,
     marginLeft: 15,
-    flexDirection: 'row',
-    justifyContent: 'center',
+    flexDirection: "row",
+    justifyContent: "center",
     gap: 10,
-    marginLeft:40
+    marginLeft: 40,
   },
 
-  registerBtn:{
-    color: 'blue',
-    textDecorationLine: 'underline',
-    fontSize:18
-  }
+  registerBtn: {
+    color: "blue",
+    textDecorationLine: "underline",
+    fontSize: 18,
+  },
 });

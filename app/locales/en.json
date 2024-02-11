@@ -14,5 +14,6 @@
     "user":"User",
     "lendingInstitute":"Lending Institute",
     "enter":"Enter",
-    "loanOverTime":"Loan Over Time"
+    "loanOverTime":"Loan Over Time",
+    "OTP":"OTP"
 }
