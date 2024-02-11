@@ -46,4 +46,4 @@ authRouter.post("/verify", async (req, res) => {
 }
 );
 
-module.exports = authRouter;
+export default authRouter;
