@@ -9,7 +9,6 @@ const client = new twilio(accountSid, authToken);
 
 const authRouter = express.Router();
 
-let OTP, user, signinUser;
 authRouter.post("/signin", async (req, res) => {
     const { number } = req.body;
     try {
