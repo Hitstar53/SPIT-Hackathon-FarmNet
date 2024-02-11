@@ -3,8 +3,8 @@ import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
 import { Stack } from "expo-router";
 
-
-import DateTimePicker from '@react-native-community/datetimepicker'; import {
+import DateTimePicker from "@react-native-community/datetimepicker";
+import {
   View,
   ScrollView,
   StyleSheet,
@@ -16,7 +16,7 @@ import DateTimePicker from '@react-native-community/datetimepicker'; import {
   Modal,
   Pressable,
   Alert,
-  FlatList
+  FlatList,
 } from "react-native";
 import LottieView from "lottie-react-native";
 
@@ -44,7 +44,6 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const Register = () => {
-
   const cropsData = [
     "Apple",
     "Banana",
@@ -68,12 +67,9 @@ const Register = () => {
     "Pomegranate",
     "Rice",
     "Watermelon",
+  ];
 
-  ]
-
-
-  const [cropsList, setCropsList] = useState([])
-
+  const [cropsList, setCropsList] = useState([]);
 
   const { t } = useTranslation();
 
@@ -92,25 +88,22 @@ const Register = () => {
   const [userImage, setUserImage] = useState();
   const [aadhaarImage, setAadhaarImage] = useState();
 
-
   const [userImageURL, setUserImageURL] = useState();
   const [aadhaarImageURL, setAadhaarImageURL] = useState();
 
   const [mobileNumber, setMobileNumber] = useState();
   const [dob, setDob] = useState();
 
-
   const [aadhaarName, setAadhaarName] = useState();
-  let aadharurl = ""
-  let userurl = ""
+  let aadharurl = "";
+  let userurl = "";
 
   const [latitude, setLatitude] = useState();
   const [longitude, setLongitude] = useState();
 
   const [completeLocationData, setCompleteLocationData] = useState();
 
-
-  const [currPage, setCurrPage] = useState(0)
+  const [currPage, setCurrPage] = useState(0);
 
   const soils = {
     0: "Clay",
@@ -119,7 +112,7 @@ const Register = () => {
     3: "peaty",
     4: "chalky",
     5: "loamy",
-  }
+  };
 
   const removeImage = async () => {
     try {
@@ -173,11 +166,9 @@ const Register = () => {
     try {
       // setImage(image);
 
-      if (imageType === 'aadhaar') {
+      if (imageType === "aadhaar") {
         setAadhaarImage(image);
-      }
-
-      else if (imageType === 'user') {
+      } else if (imageType === "user") {
         setUserImage(image);
       }
       // console.log(image);
@@ -188,8 +179,6 @@ const Register = () => {
     }
   };
 
-
-
   const handleImageUpload = async (imageURI) => {
     try {
       const response = await fetch(imageURI);
@@ -199,17 +188,16 @@ const Register = () => {
       await fileRef.put(blob);
       const downloadURL = await fileRef.getDownloadURL();
       // console.log("File available at", downloadURL);
-      if (imageType === 'aadhaar') {
+      if (imageType === "aadhaar") {
         setAadhaarImageURL(downloadURL);
-        console.log("Aadhaar Image URL: ", downloadURL)
-        aadharurl = downloadURL
-        setImageType('')
-      }
-      else {
+        console.log("Aadhaar Image URL: ", downloadURL);
+        aadharurl = downloadURL;
+        setImageType("");
+      } else {
         setUserImageURL(downloadURL);
-        userurl = downloadURL
-        console.log("User Image URL", downloadURL)
-        setImageType('')
+        userurl = downloadURL;
+        console.log("User Image URL", downloadURL);
+        setImageType("");
       }
     } catch (error) {
       console.error("Error uploading image: ", error);
@@ -290,8 +278,6 @@ const Register = () => {
     }
   };
 
-
-
   const handleSubmit = async () => {
     // axios code to post data
 
@@ -301,17 +287,20 @@ const Register = () => {
       profileimg: userImageURL,
       phoneno: mobileNumber,
       dob: dob,
-      name: aadhaarName
-    }
-    console.log(userdata)
+      name: aadhaarName,
+    };
+    console.log(userdata);
     try {
-      const res = await axios.post("https://farmnet-node.onrender.com/api/user", userdata)
-      console.log(location)
-      const userid = res.data.user._id
-      console.log(userid)
+      const res = await axios.post(
+        "https://farmnet-node.onrender.com/api/user",
+        userdata
+      );
+      console.log(location);
+      const userid = res.data.user._id;
+      console.log(userid);
       const profile = {
         // userid is object id of user
-        user:  userid,
+        user: userid,
         aadhar: aadharnumber,
         landSize: Number(farmSize),
         avgyeild: Number(annualRevenue),
@@ -319,20 +308,17 @@ const Register = () => {
         soiltype: soils[soilType],
         location: completeLocationData["location"]["name"],
         address: completeLocationData["location"]["region"],
-      }
-      console.log(profile)
-      const res2 = await axios.post("https://farmnet-node.onrender.com/api/profile", profile)
-      console.log(res2)
-
+      };
+      console.log(profile);
+      const res2 = await axios.post(
+        "https://farmnet-node.onrender.com/api/profile",
+        profile
+      );
+      console.log(res2);
     } catch (error) {
-      console.log(error)
-
+      console.log(error);
     }
-
-
-  }
-
-
+  };
 
   return (
     <View>
@@ -357,11 +343,10 @@ const Register = () => {
               { width: screenWidth, height: screenHeight - 200 },
             ]}
           >
-            <Text style={styles.text}>{t("aadhaarCardTitle")}</Text>
+            <Text style={styles.text}>{t("aadhaarCardName")}</Text>
             <TextInput
               style={styles.textInput}
-              placeholder={t("aadhaarCardTitle")}
-
+              placeholder={t("aadhaarCardName")}
               onChangeText={setAadhaarName}
               value={aadhaarName}
             />
@@ -373,31 +358,24 @@ const Register = () => {
             />
           </View>
 
-
           <View style={[styles.column, { width: screenWidth }]}>
-
-
-            <Text style={styles.text}>Mobile Number</Text>
+            <Text style={styles.text}> {t("mobileNumber")} </Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Aadhaar Number"
+              placeholder={t("mobileNumber")}
               onChangeText={(text) => setMobileNumber(text)}
             />
 
-            <Text style={styles.text}>Date of birth</Text>
+            <Text style={styles.text}>{t("dateOfBirth")}</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Aadhaar Number"
+              placeholder={t("dateOfBirth")}
               // onChangeText={setPassword}
               // value={password}
               // secureTextEntry={true}
               onChangeText={(text) => setDob(text)}
             />
-
           </View>
-
-
-
 
           <View style={[styles.column, { width: screenWidth }]}>
             <View style={styles.innerContainer}>
@@ -439,27 +417,31 @@ const Register = () => {
               </Modal>
               {/* <Image source={{ uri: image }} style={styles.imageContainer} /> */}
 
-
-              {
-                aadhaarImage ? <Image source={{ uri: aadhaarImage }} style={styles.imageContainer} /> : <LottieView
+              {aadhaarImage ? (
+                <Image
+                  source={{ uri: aadhaarImage }}
+                  style={styles.imageContainer}
+                />
+              ) : (
+                <LottieView
                   source={require("../../assets/aadhar.json")}
                   style={{ width: 400, height: 200, marginTop: -250 }}
                   autoPlay
                   loop
                 />
-              }
+              )}
 
-              <Text style={styles.FarmText}>Aahaar Photo</Text>
+              <Text style={styles.FarmText}>{ t("aadhaarPhoto") }</Text>
 
               {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
-                  setModalVisible(true)
-                  setImageType('aadhaar')
+                  setModalVisible(true);
+                  setImageType("aadhaar");
                 }}
               >
-                <Text style={styles.buttonText}>Upload Image</Text>
+                <Text style={styles.buttonText}> { t("uploadPhoto") } </Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -483,21 +465,21 @@ const Register = () => {
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => uploadImage()}
                     >
-                      <Text style={styles.textStyle}>Camera</Text>
+                      <Text style={styles.textStyle}> { t("camera") } </Text>
                     </Pressable>
 
                     <Pressable
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => selectGalleryImage()}
                     >
-                      <Text style={styles.textStyle}>Gallery</Text>
+                      <Text style={styles.textStyle}> { t("gallery") } </Text>
                     </Pressable>
 
                     <Pressable
                       style={[styles.button, styles.buttonClose]}
                       onPress={() => removeImage()}
                     >
-                      <Text style={styles.textStyle}>Remove</Text>
+                      <Text style={styles.textStyle}> { t("remove") } </Text>
                     </Pressable>
                   </View>
                 </View>
@@ -505,27 +487,32 @@ const Register = () => {
 
               {/* <Image source={{ uri: image }} style={styles.imageContainer} /> */}
 
-              {
-                userImage ? <Image source={{ uri: userImage }} style={styles.imageContainer} /> : <LottieView
+              {userImage ? (
+                <Image
+                  source={{ uri: userImage }}
+                  style={styles.imageContainer}
+                />
+              ) : (
+                <LottieView
                   source={require("../../assets/upload_image.json")}
                   style={{ width: 400, height: 200, marginTop: -250 }}
                   autoPlay
                   loop
                 />
-              }
+              )}
 
-              <Text style={styles.FarmText}>Your Photo</Text>
+              <Text style={styles.FarmText}> { t("uploadPhoto") } </Text>
 
               {/* <TouchableOpacity> <Text>Upload Image</Text> </TouchableOpacity> */}
               <TouchableOpacity
                 style={styles.buttonContainer}
                 onPress={() => {
-                  setModalVisible(true)
-                  setImageType('user')
+                  setModalVisible(true);
+                  setImageType("user");
                 }}
               >
                 {/* <Text style={styles.buttonText}>User Image</Text> */}
-                <Text style={styles.buttonText}>Upload Image</Text>
+                <Text style={styles.buttonText}>{ t("uploadPhoto") }</Text>
               </TouchableOpacity>
             </View>
           </View>
@@ -538,7 +525,7 @@ const Register = () => {
                 autoPlay
                 loop
               />
-              <Text style={styles.FarmText}>Farm Size</Text>
+              <Text style={styles.FarmText}> { t("farmSize") } </Text>
               <TextInput
                 style={styles.amountInput}
                 placeholder="Enter amount"
@@ -556,10 +543,10 @@ const Register = () => {
                 autoPlay
                 loop
               />
-              <Text style={styles.FarmText}>Annual Revenue</Text>
+              <Text style={styles.FarmText}> { t("annualRevenue") } </Text>
               <TextInput
                 style={styles.amountInput}
-                placeholder="Enter amount"
+                placeholder={t("annualRevenue")}
                 keyboardType="numeric"
                 value={annualRevenue}
                 onChangeText={(text) => setAnnualRevenue(text)}
@@ -569,18 +556,15 @@ const Register = () => {
 
           <View style={[styles.column, { width: screenWidth }]}>
             <TouchableOpacity onPress={() => handleSubmit()}>
-
-              <Text style={{ fontSize: 18 }}> Soil Type </Text>
+              <Text style={{ fontSize: 18 }}> </Text>
             </TouchableOpacity>
             <View style={styles.soilImageContainers}>
               {/* First row */}
               {/*Generate two buttons with set background images and text above */}
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>Clay</Text>
-                <TouchableOpacity
-                  onPress={() => setSoilType(0)}
-                >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("claySoil") }</Text>
+                <TouchableOpacity onPress={() => setSoilType(0)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/clay.jpg")}
@@ -589,10 +573,8 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>sandy</Text>
-                <TouchableOpacity
-                  onPress={() => setSoilType(1)}
-                >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("sandySoil") }</Text>
+                <TouchableOpacity onPress={() => setSoilType(1)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/sandy.jpg")}
@@ -601,42 +583,29 @@ const Register = () => {
               </View>
 
               <View>
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>Slity</Text>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("siltySoil") }</Text>
 
-                <TouchableOpacity
-                  onPress={() => setSoilType(2)}
-                >
+                <TouchableOpacity onPress={() => setSoilType(2)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/slity.jpg")}
                   />
                 </TouchableOpacity>
-
               </View>
 
-
               <View>
-
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>Peaty</Text>
-                <TouchableOpacity
-                  onPress={() => setSoilType(3)}
-                >
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("peatySoil") }</Text>
+                <TouchableOpacity onPress={() => setSoilType(3)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/peaty.jpg")}
                   />
                 </TouchableOpacity>
-
               </View>
 
-
               <View>
-
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>chalky</Text>
-                <TouchableOpacity
-                  onPress={() => setSoilType(4)}
-                >
-
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("chalkySoil") }</Text>
+                <TouchableOpacity onPress={() => setSoilType(4)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/chalky.jpg")}
@@ -644,25 +613,17 @@ const Register = () => {
                 </TouchableOpacity>
               </View>
 
-
               <View>
+                <Text style={{ fontSize: 18, marginLeft: 45 }}>{ t("loamySoil") }</Text>
 
-                <Text style={{ fontSize: 18, marginLeft: 45 }}>Loam</Text>
-
-                <TouchableOpacity
-                  onPress={() => setSoilType(5)}
-                >
-
+                <TouchableOpacity onPress={() => setSoilType(5)}>
                   <Image
                     style={styles.soilImageContainer}
                     source={require("../../assets/soil/loamy.jpg")}
                   />
                 </TouchableOpacity>
               </View>
-
             </View>
-
-
           </View>
 
           <View style={[styles.column, { width: screenWidth }]}>
@@ -683,17 +644,15 @@ const Register = () => {
                     key={item}
                     style={styles.radioButton}
                     onPress={() => {
-                      setCropsList([...cropsList, item])
-                      console.log(cropsList)
+                      setCropsList([...cropsList, item]);
+                      console.log(cropsList);
                     }}
                   >
                     <Text style={styles.radioText}>{item}</Text>
                   </TouchableOpacity>
                 )}
-                keyExtractor={item => item.toString()}
+                keyExtractor={(item) => item.toString()}
               />
-
-
 
               {/* <TouchableOpacity style={styles.submitBtn}
                 onPress={handleRightScroll}
@@ -704,30 +663,19 @@ const Register = () => {
                 </View>
               </TouchableOpacity>
  */}
-
-
-
-
-
-
             </View>
           </View>
           {/* Add more columns as needed */}
         </View>
-
-
       </ScrollView>
       {/* Buttons for scrolling */}
       <View style={styles.buttonArrowContainer}>
         <TouchableOpacity
           style={styles.scrollArrowButton}
-          onPress={
-
-            () => {
-              handleLeftScroll()
-              currPage > 0? setCurrPage(currPage-1) : setCurrPage(0)
-            }
-          }
+          onPress={() => {
+            handleLeftScroll();
+            currPage > 0 ? setCurrPage(currPage - 1) : setCurrPage(0);
+          }}
         >
           <Image
             style={styles.navigataionBtn}
@@ -736,21 +684,19 @@ const Register = () => {
         </TouchableOpacity>
         <TouchableOpacity
           style={styles.scrollArrowButton}
-          onPress={
-            ()=>{
-              handleRightScroll()
-              currPage<7? setCurrPage(currPage+1) : setCurrPage(7)
-            }
-          }
+          onPress={() => {
+            handleRightScroll();
+            currPage < 7 ? setCurrPage(currPage + 1) : setCurrPage(7);
+          }}
         >
-
-          {
-            currPage === 7 ? <Text style={styles.submitText}>Submit</Text> : <Image
+          {currPage === 7 ? (
+            <Text style={styles.submitText}>Submit</Text>
+          ) : (
+            <Image
               style={styles.navigataionBtn}
               source={require("../../assets/right-arrow.png")}
-              />
-          }
-
+            />
+          )}
         </TouchableOpacity>
       </View>
     </View>
@@ -837,11 +783,10 @@ const styles = StyleSheet.create({
   submitText: {
     fontSize: 20,
     backgroundColor: "lightblue",
-    width:100,
-    height:50,
+    width: 100,
+    height: 50,
     textAlign: "center",
     padding: 10,
-
   },
 
   imageContainer: {
@@ -938,11 +883,11 @@ const styles = StyleSheet.create({
   radioButton: {
     margin: 10,
     padding: 15,
-    backgroundColor: '#f0f0f0',
-    borderColor: '#e0e0e0',
-    alignItems: 'center',
-    justifyContent: 'center',
-    shadowColor: '#000',
+    backgroundColor: "#f0f0f0",
+    borderColor: "#e0e0e0",
+    alignItems: "center",
+    justifyContent: "center",
+    shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 2,
@@ -951,18 +896,17 @@ const styles = StyleSheet.create({
     shadowRadius: 3.84,
     elevation: 5,
     width: 150,
-
   },
   radioText: {
     fontSize: 16,
-    fontWeight: 'bold',
-    color: '#333333',
+    fontWeight: "bold",
+    color: "#333333",
   },
 
   submitBtn: {
     width: 100,
     height: 50,
-  }
+  },
 });
 
 export default Register;
