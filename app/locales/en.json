@@ -15,5 +15,20 @@
     "lendingInstitute":"Lending Institute",
     "enter":"Enter",
     "loanOverTime":"Loan Over Time",
-    "OTP":"OTP"
+    "OTP":"OTP",
+    "aadhaarCardTitle":"Aadhaar Card Name",
+    "aadhaarCardNumber":"Aadhaar Card Number",
+    "dateOfBirth":"Date of Birth",
+    "aadhaarPhoto":"Aadhaar Photo",
+    "uploadPhoto":"Upload Photo",
+    "yourPhoto":"Your Photo",
+    "farmSize":"Farm Size",
+    "enterAmount":"Enter Amount",
+    "annualRevenue":"Annual Revenue",
+    "claySoil":  "Clay Soil",
+    "sandySoil": "Sandy Soil",
+    "loamySoil": "Loamy Soil",
+    "siltySoil": "Silty Soil",
+    "peatySoil": "Peaty Soil",
+    "chalkySoil": "Chalky Soil"
 }

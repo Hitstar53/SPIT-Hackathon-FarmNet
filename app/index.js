@@ -22,6 +22,7 @@ const StartingScreen = () => {
 
   const selectedLanguage = 'English'; // Set the initially selected language
 
+
   const renderButtons = () => {
 
     const saveSelectedLang = async (lng) => {

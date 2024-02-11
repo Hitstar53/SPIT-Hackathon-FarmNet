@@ -357,18 +357,18 @@ const Register = () => {
               { width: screenWidth, height: screenHeight - 200 },
             ]}
           >
-            <Text style={styles.text}>Name on Adhaar Card</Text>
+            <Text style={styles.text}>{t("aadhaarCardTitle")}</Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Enter your name here"
+              placeholder={t("aadhaarCardTitle")}
 
               onChangeText={setAadhaarName}
               value={aadhaarName}
             />
-            <Text style={styles.text}>Aadhar Number</Text>
+            <Text style={styles.text}> {t("aadhaarCardNumber")} </Text>
             <TextInput
               style={styles.textInput}
-              placeholder="Aadhaar Number"
+              placeholder={t("aadhaarCardNumber")}
               onChangeText={(text) => setAadharNumber(text)}
             />
           </View>

@@ -50,13 +50,13 @@ const Login = () => {
     const data={
       number: number,
     }
-    
+    console.log(data)
     try {
-      const response = await axios.post("https://farmnet-node.onrender.com/api/signin", data) 
+      const response = await axios.post("https://farmnet-node.onrender.com/api/auth/signin", data) 
     } catch (error) {
       console.log(error);
-      
     }
+
     
   };
 
@@ -65,7 +65,7 @@ const Login = () => {
       otp : pin.join(""),
     }
     try {
-      const response = await axios.post("https://farmnet-node.onrender.com/api/verify", data)
+      const response = await axios.post("https://farmnet-node.onrender.com/api/auth/verify", data)
       if (response.status === 200) {
         console.log(response.data)
         router.push("/home/Home")
@@ -106,7 +106,7 @@ const Login = () => {
           value={number}
         />
         <View style={styles.registerContainer}>
-          <TouchableOpacity onPress={() => handleOnPress}>
+          <TouchableOpacity onPress={() => handleOnPress()}>
             <Text style={styles.registerBtn}>{t("OTP")}</Text>
           </TouchableOpacity>
         </View>
