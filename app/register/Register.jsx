@@ -570,7 +570,7 @@ const Register = () => {
           <View style={[styles.column, { width: screenWidth }]}>
             <TouchableOpacity onPress={() => handleSubmit()}>
 
-              <Text style={{ fontSize: 18 }}> Soil Type </Text>
+              <Text style={styles.FarmText}> Soil Type </Text>
             </TouchableOpacity>
             <View style={styles.soilImageContainers}>
               {/* First row */}
@@ -962,6 +962,11 @@ const styles = StyleSheet.create({
   submitBtn: {
     width: 100,
     height: 50,
+  },
+
+  soilText:{
+    fontSize:24,
+
   }
 });
 

@@ -10,6 +10,9 @@ import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
 
 const Transaction = () => {
+
+  const {t} = useTranslation();
+
   const transactionData = {
     transactionDate: '2024-02-10',
     amount: '$100.00',

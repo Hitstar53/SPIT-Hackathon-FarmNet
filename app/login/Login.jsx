@@ -74,6 +74,23 @@ const Login = () => {
       console.log(error);
     }
   };
+
+
+  const getUser = async () => {
+    console.log(number);
+    
+    try {
+      const response = await axios.get(
+        `https://farmnet-node.onrender.com/api/user/${number}`
+      )
+      if (response.status === 200) {
+        console.log(response);
+        router.push("/home/Home");
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
 
   // Call the function to make the API request
@@ -106,7 +123,7 @@ const Login = () => {
           value={number}
         />
         <View style={styles.registerContainer}>
-          <TouchableOpacity onPress={() => handleOnPress}>
+          <TouchableOpacity onPress={() => handleOnPress()}>
             <Text style={styles.registerBtn}>{t("OTP")}</Text>
           </TouchableOpacity>
         </View>
@@ -140,7 +157,9 @@ const Login = () => {
             <Text style={styles.registerBtn}>{t("register")}</Text>
           </TouchableOpacity>
         </View>
-        <TouchableOpacity style={styles.button}>
+        <TouchableOpacity style={styles.button}
+         onPress={() => getUser()}
+        >
           <View>
             <Text>{t("submit")}</Text>
           </View>

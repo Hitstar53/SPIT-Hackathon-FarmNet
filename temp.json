@@ -1,0 +1,128 @@
+// {
+//     "config": {
+//         "adapter": [
+//             "xhr",
+//             "http"
+//         ],
+//         "data": undefined,
+//         "env": {
+//             "Blob": [Function Blob
+//             ],
+//             "FormData": [Function FormData
+//             ]
+//         },
+//         "headers": [Object
+//         ],
+//         "maxBodyLength": -1,
+//         "maxContentLength": -1,
+//         "method": "get",
+//         "timeout": 0,
+//         "transformRequest": [
+//             [Function transformRequest
+//             ]
+//         ],
+//         "transformResponse": [
+//             [Function transformResponse
+//             ]
+//         ],
+//         "transitional": {
+//             "clarifyTimeoutError": false,
+//             "forcedJSONParsing": true,
+//             "silentJSONParsing": true
+//         },
+//         "url": "https://farmnet-node.onrender.com/api/user/9209340215",
+//         "validateStatus": [Function validateStatus
+//         ],
+//         "xsrfCookieName": "XSRF-TOKEN",
+//         "xsrfHeaderName": "X-XSRF-TOKEN"
+//     },
+//     "data": {
+//         "user": null
+//     },
+//     "headers": {
+//         "access-control-allow-origin": "*",
+//         "alt-svc": "h3=\":443\"; ma=86400",
+//         "cf-cache-status": "DYNAMIC",
+//         "cf-ray": "853a1c6bcd202e32-BOM",
+//         "content-type": "application/json; charset=utf-8",
+//         "date": "Sun, 11 Feb 2024 05:14:55 GMT",
+//         "etag": "W/\"d-O3i+ap2cff5bxhPRN8PyzcjObvA\"",
+//         "rndr-id": "7a0378d9-9190-468b",
+//         "server": "cloudflare",
+//         "vary": "Accept-Encoding",
+//         "x-powered-by": "Express",
+//         "x-render-origin-server": "Render"
+//     },
+//     "request": {
+//         "DONE": 4,
+//         "HEADERS_RECEIVED": 2,
+//         "LOADING": 3,
+//         "OPENED": 1,
+//         "UNSENT": 0,
+//         "_aborted": false,
+//         "_cachedResponse": undefined,
+//         "_hasError": false,
+//         "_headers": {
+//             "accept": "application/json, text/plain, */*"
+//         },
+//         "_incrementalEvents": false,
+//         "_lowerCaseResponseHeaders": {
+//             "access-control-allow-origin": "*",
+//             "alt-svc": "h3=\":443\"; ma=86400",
+//             "cf-cache-status": "DYNAMIC",
+//             "cf-ray": "853a1c6bcd202e32-BOM",
+//             "content-type": "application/json; charset=utf-8",
+//             "date": "Sun, 11 Feb 2024 05:14:55 GMT",
+//             "etag": "W/\"d-O3i+ap2cff5bxhPRN8PyzcjObvA\"",
+//             "rndr-id": "7a0378d9-9190-468b",
+//             "server": "cloudflare",
+//             "vary": "Accept-Encoding",
+//             "x-powered-by": "Express",
+//             "x-render-origin-server": "Render"
+//         },
+//         "_method": "GET",
+//         "_perfKey": "network_XMLHttpRequest_https://farmnet-node.onrender.com/api/user/9209340215",
+//         "_performanceLogger": {
+//             "_closed": false,
+//             "_extras": [Object
+//             ],
+//             "_isGlobalLogger": true,
+//             "_pointExtras": [Object
+//             ],
+//             "_points": [Object
+//             ],
+//             "_timespans": [Object
+//             ]
+//         },
+//         "_requestId": null,
+//         "_response": "{\"user\":null}",
+//         "_responseType": "",
+//         "_sent": true,
+//         "_subscriptions": [],
+//         "_timedOut": false,
+//         "_trackingName": "unknown",
+//         "_url": "https://farmnet-node.onrender.com/api/user/9209340215",
+//         "readyState": 4,
+//         "responseHeaders": {
+//             "access-control-allow-origin": "*",
+//             "alt-svc": "h3=\":443\"; ma=86400",
+//             "cf-cache-status": "DYNAMIC",
+//             "cf-ray": "853a1c6bcd202e32-BOM",
+//             "content-type": "application/json; charset=utf-8",
+//             "date": "Sun, 11 Feb 2024 05:14:55 GMT",
+//             "etag": "W/\"d-O3i+ap2cff5bxhPRN8PyzcjObvA\"",
+//             "rndr-id": "7a0378d9-9190-468b",
+//             "server": "cloudflare",
+//             "vary": "Accept-Encoding",
+//             "x-powered-by": "Express",
+//             "x-render-origin-server": "Render"
+//         },
+//         "responseURL": "https://farmnet-node.onrender.com/api/user/9209340215",
+//         "status": 200,
+//         "timeout": 0,
+//         "upload": {},
+//         "withCredentials": true
+//     },
+//     "status": 200,
+//     "statusText": undefined
+// }
