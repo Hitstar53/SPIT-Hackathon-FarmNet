@@ -2,7 +2,7 @@ import User from "../Models/User.js";
 
 const createUser = async (req, res) => {
     try {
-        const { aadhar, phoneno, firstname, lastname, dob, aadharimg, profileimg } = req.body;
+        const { aadhar, phoneno, name, dob, aadharimg, profileimg } = req.body;
         const user = await User.create({
         aadhar,
         phoneno,
