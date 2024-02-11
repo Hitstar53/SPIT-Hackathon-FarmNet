@@ -15,5 +15,29 @@
     "lendingInstitute": "ऋण संस्थान",
     "enter": "दर्ज करें",
     "loanOverTime": "समय के साथ ऋण",
-    "OTP": "ओटीपी"
+    "OTP": "ओटीपी",
+    "aadhaarCardName": "आधार कार्ड नाम",
+    "aadhaarCardNumber": "आधार कार्ड नंबर",
+    "mobileNumber": "मोबाइल नंबर",
+    "dateOfBirth": "जन्म तिथि",
+    "aadhaarPhoto": "आधार फोटो",
+    "uploadPhoto": "फोटो अपलोड करें",
+    "yourName": "आपका नाम",
+    "farmSize": "खेत का आकार",
+    "enterAmount": "राशि दर्ज करें",
+    "annualRevenue": "वार्षिक राजस्व",
+    "claySoil": "मिट्टी मिट्टी",
+    "sandySoil": "रेतीली मिट्टी",
+    "loamySoil": "लोमी मिट्टी",
+    "siltySoil": "सिल्टी मिट्टी",
+    "peatySoil": "पीटी मिट्टी",
+    "chalkySoil": "चाकी मिट्टी",
+    "camera": "कैमरा",
+    "gallery": "गैलरी",
+    "remove": "हटाएं",
+    "soilType": "मिट्टी के प्रकार"
+    
+
+    
+
 }
