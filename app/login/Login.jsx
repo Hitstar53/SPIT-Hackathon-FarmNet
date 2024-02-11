@@ -19,7 +19,7 @@ import LottieView from "lottie-react-native";
 import axios from "axios";
 
 const Login = () => {
-  const [email, setEmail] = useState();
+  const [number, setNumber] = useState();
   const [password, setPassword] = useState();
   const [pin, setPin] = useState(["", "", "", ""]);
   const pinInputs = [useRef(), useRef(), useRef(), useRef()];
@@ -46,7 +46,34 @@ const Login = () => {
     }
   };
 
+  const handleOnPress = async() => {
+    const data={
+      number: number,
+    }
+    
+    try {
+      const response = await axios.post("https://farmnet-node.onrender.com/api/signin", data) 
+    } catch (error) {
+      console.log(error);
+      
+    }
+    
+  };
 
+  const validate = async() => {
+    const data = {
+      otp : pin.join(""),
+    }
+    try {
+      const response = await axios.post("https://farmnet-node.onrender.com/api/verify", data)
+      if (response.status === 200) {
+        console.log(response.data)
+        router.push("/home/Home")
+      }
+    } catch (error) {
+      console.log(error);
+    }
+  };
   
 
   // Call the function to make the API request
@@ -75,11 +102,11 @@ const Login = () => {
         <TextInput
           style={styles.textInput}
           placeholder={t("mobile")}
-          onChangeText={setEmail}
-          value={email}
+          onChangeText={setNumber}
+          value={number}
         />
         <View style={styles.registerContainer}>
-          <TouchableOpacity onPress={() => console.log("working")}>
+          <TouchableOpacity onPress={() => handleOnPress}>
             <Text style={styles.registerBtn}>{t("OTP")}</Text>
           </TouchableOpacity>
         </View>
