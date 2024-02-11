@@ -10,13 +10,13 @@ let OTP, user, signinUser;
 authRouter.post("/signin", async (req, res) => {
     const { number } = req.body;
     try {
-        signinuser = await User.findOne({ number });
+        const signinuser = await User.findOne({ number });
         if (!signinUser) {
             return res.status(400).json({ message: "User not found" });
         }
         
         let digits = "0123456789";
-        OTP = "";
+        let OTP = "";
         for (let i = 0; i < 4; i++) {
             OTP += digits[Math.floor(Math.random() * 10)];
         }
@@ -37,7 +37,7 @@ authRouter.post("/signin", async (req, res) => {
 authRouter.post("/verify", async (req, res) => {
     const { otp } = req.body;
     if (otp == OTP) {
-        const token = jwt.sign({ number: signinUser.number }, process.env.JWT_SECRET, { expiresIn: "1h" });
+        const token = jwt.sign({ number: signinUser.number }, process.env.JWT_SECRET_KEY, { expiresIn: "1h" });
         res.status(200).json({ message: "OTP verified successfully", token });
     }
     else {
