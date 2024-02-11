@@ -1,6 +1,6 @@
 import React, { useRef, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, Modal, FlatList, TouchableOpacity } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 import { useFonts } from 'expo-font';
 import BankCard from "../../components/Cards/BankCard";
 import CreditScore from "../../components/Cards/CreditScore";
@@ -9,7 +9,7 @@ import Navbar from "../../components/navbar/Navbar";
 import { useTranslation } from "react-i18next";
 
 const Home = () => {
-
+  const router = useRouter();
   const { t } = useTranslation();
   const [langModalVisible, setLangModalVisible] = useState(false);
 
@@ -54,12 +54,12 @@ const Home = () => {
         />
         <View style={styles.sqcontainer}>
           <View style={styles.srow}>
-            <SquareCard iconName="paper-plane" text1={t("payLoan")} text2="Lorem Ipsum" />
-            <SquareCard iconName="wallet" text1={t("request")} text2="Version 2.0" />
+            <TouchableOpacity onPress= {() => router.push("/loan/PayLoan")}><SquareCard iconName="paper-plane" text1={t("payLoan")} text2="Lorem Ipsum" /></TouchableOpacity>
+            <TouchableOpacity onPress={() =>{router.push("/loan/LoanRequest")}}><SquareCard iconName="wallet" text1={t("request")} text2="Version 2.0" /></TouchableOpacity>
           </View>
           <View style={styles.srow}>
-            <SquareCard iconName="user-friends" text1={t("contact")} text2="Version 3.0" />
-            <SquareCard iconName="chart-line" text1={t("analyse")} text2="Version 4.0" />
+          <TouchableOpacity onPress={() =>{router.push("/crop/SellCrop")}}><SquareCard iconName="seedling" text1={t("Sell Crop")} text2="Version 3.0" /></TouchableOpacity>
+          <TouchableOpacity onPress={() =>{router.push("/transaction/Transaction")}}><SquareCard iconName="chart-line" text1={t("analyse")} text2="Version 4.0" /></TouchableOpacity>
           </View>
         </View>
       </ScrollView>

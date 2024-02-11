@@ -267,6 +267,9 @@ const Register = () => {
       scrollOffset + columnWidth
     );
     handleScroll(newOffset);
+    if (currPage === 7) {
+      handleSubmit();
+    }
   };
 
   const numColumns = 8;
@@ -314,6 +317,7 @@ const Register = () => {
         "https://farmnet-node.onrender.com/api/profile",
         profile
       );
+        router.route('/home/Home');
       console.log(res2);
     } catch (error) {
       console.log(error);

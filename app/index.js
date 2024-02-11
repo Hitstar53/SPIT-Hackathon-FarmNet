@@ -6,6 +6,10 @@ import i18next, { languageResources } from "./services/i18next"
 import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
 import languagesList from "./services/languagesList.json";
+import { LogBox } from 'react-native';
+
+LogBox.ignoreLogs(['Warning: ...']); // Ignore log notification by message
+LogBox.ignoreAllLogs();//Ignore all log notification
 
 const StartingScreen = () => {
   const languages = [
@@ -36,7 +40,7 @@ const StartingScreen = () => {
     const changeLng = (lng) => {
       i18next.changeLanguage(languagesList[lng]);
       saveSelectedLang(lng);
-      router.push('/language/StartingScreen')
+      router.push('/login/Login')
 
     };
   

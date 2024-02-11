@@ -158,7 +158,7 @@ const Login = () => {
           </TouchableOpacity>
         </View>
         <TouchableOpacity style={styles.button}
-         onPress={() => getUser()}
+         onPress={() => router.push("/home/Home")}
         >
           <View>
             <Text>{t("submit")}</Text>

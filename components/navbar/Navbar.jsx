@@ -2,6 +2,8 @@ import React from 'react';
 import { View, StyleSheet, Image, TouchableOpacity } from 'react-native';
 import { useRouter } from 'expo-router';
 // import { icons } from '../../constants';
+import { FontAwesome5 } from "@expo/vector-icons";
+
 
 const Navbar = () => {
   const router = useRouter();
@@ -16,16 +18,16 @@ const Navbar = () => {
       </TouchableOpacity>
       <TouchableOpacity
         onPress={() => {
-          router.push("/games-section/Games");
-        }}>
-        <Image style={styles.image} source={require('../../assets/home.png')} />
-      </TouchableOpacity>
-      <TouchableOpacity
-        onPress={() => {
           router.push("/Chatbot/Chatbot");
         }}>
         <Image source={require('../../assets/chatbot.png')} style={styles.chatImage} />
  
+      </TouchableOpacity>
+      <TouchableOpacity
+        onPress={() => {
+          router.push("/crop/CropInfo");
+        }}>
+        <FontAwesome5 name="info" size={32} style={{marginTop: 10}} />
       </TouchableOpacity>
 
       {/* <TouchableOpacity
