@@ -1,7 +1,7 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useTranslation } from "react-i18next";
 import { AsyncStorage } from "react-native";
-import { Stack } from "expo-router";
+import { Stack, useRouter } from "expo-router";
 
 import DateTimePicker from "@react-native-community/datetimepicker";
 import {
@@ -44,6 +44,9 @@ const screenWidth = Dimensions.get("window").width;
 const screenHeight = Dimensions.get("window").height;
 
 const Register = () => {
+
+  const router = useRouter();
+
   const cropsData = [
     "Apple",
     "Banana",
@@ -317,10 +320,14 @@ const Register = () => {
         "https://farmnet-node.onrender.com/api/profile",
         profile
       );
-        router.route('/home/Home');
+      
       console.log(res2);
+
     } catch (error) {
       console.log(error);
+    }
+    finally{
+      router.push("/home/Home")
     }
   };
 
@@ -347,14 +354,14 @@ const Register = () => {
               { width: screenWidth, height: screenHeight - 200 },
             ]}
           >
-            <Text style={styles.text}>{t("aadhaarCardName")}</Text>
+            <Text style={styles.commontext}>{t("aadhaarCardTitle")}</Text>
             <TextInput
               style={styles.textInput}
-              placeholder={t("aadhaarCardName")}
+              placeholder={t("aadhaarCardTitle")}
               onChangeText={setAadhaarName}
               value={aadhaarName}
             />
-            <Text style={styles.text}> {t("aadhaarCardNumber")} </Text>
+            <Text style={styles.commontext}> {t("aadhaarCardNumber")} </Text>
             <TextInput
               style={styles.textInput}
               placeholder={t("aadhaarCardNumber")}
@@ -363,14 +370,14 @@ const Register = () => {
           </View>
 
           <View style={[styles.column, { width: screenWidth }]}>
-            <Text style={styles.text}> {t("mobileNumber")} </Text>
+            <Text style={styles.commontext}> {t("mobile")} </Text>
             <TextInput
               style={styles.textInput}
-              placeholder={t("mobileNumber")}
+              placeholder={t("mobile")}
               onChangeText={(text) => setMobileNumber(text)}
             />
 
-            <Text style={styles.text}>{t("dateOfBirth")}</Text>
+            <Text style={styles.commontext}>{t("dateOfBirth")}</Text>
             <TextInput
               style={styles.textInput}
               placeholder={t("dateOfBirth")}
@@ -911,6 +918,11 @@ const styles = StyleSheet.create({
   submitBtn: {
     width: 100,
     height: 50,
+  },
+  commontext:{
+    fontSize:24,
+    fontWeight:"bold",
+    marginTop:20
   }
 });
 
