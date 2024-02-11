@@ -1,10 +1,13 @@
-const express = require("express");
-const authRouter = express.Router();
-const User = require("../Models/User");
-const jwt = require("jsonwebtoken");
+import express from "express";
+import User from "../Models/User.js";
+import jwt from "jsonwebtoken";
 const accountSid = process.env.TWILIO_ACCOUNT_SID;
 const authToken = process.env.TWILIO_AUTH_TOKEN;
-const client = require("twilio")(accountSid, authToken);
+import twilio from "twilio";
+
+const client = new twilio(accountSid, authToken);
+
+const authRouter = express.Router();
 
 let OTP, user, signinUser;
 authRouter.post("/signin", async (req, res) => {
