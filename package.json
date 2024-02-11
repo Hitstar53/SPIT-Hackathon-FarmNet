@@ -28,6 +28,7 @@
     "lottie-react": "^2.4.0",
     "lottie-react-native": "^6.6.0",
     "npx": "^10.2.2",
+    "query-string": "^8.2.0",
     "react": "18.2.0",
     "react-i18next": "^14.0.5",
     "react-native": "0.73.4",
