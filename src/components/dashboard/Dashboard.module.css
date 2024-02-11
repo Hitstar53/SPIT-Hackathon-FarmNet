@@ -1,11 +1,50 @@
-.circle {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 2px solid #666;
-    background-color: #f4f4f4;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-right: 10px;
+/* App.css */
+
+.dashboard {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  gap: 2rem;
+  padding: 2rem;
+}
+
+.largeChart {
+  width: 95%;
+  padding: 2rem;
+  margin-bottom: 20px;
+  background-color: #fff;
+  border-radius: 20px;
+  border: 2px solid #ccc;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.peopleList {
+  width: 30%;
+  border-right: 1px solid #ccc;
+  padding: 20px;
+}
+
+.listItem {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.profileIcon {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.personDetails {
+  display: flex;
+  flex-direction: column;
+}
+
+.personName {
+  font-weight: bold;
+}
+
+.amountDue {
+  color: red;
 }

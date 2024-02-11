@@ -1,11 +1,11 @@
 import * as React from "react";
-import Chart from "react-apexcharts";
 import styles from "./Dashboard.module.css";
-import { styled } from "@mui/material/styles";
+import styled from "@mui/material/styles/styled";
 import Box from "@mui/material/Box";
 import LinearProgress, {
   linearProgressClasses,
 } from "@mui/material/LinearProgress";
+import Chart from "react-apexcharts";
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 10,
@@ -20,65 +20,101 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const Dashboard = () => {
-  const chartDetails = {
-    series: [
+const peopleList = [
+  { id: 1, name: "John Doe", amountDue: 500 },
+  { id: 2, name: "Jane Doe", amountDue: 300 },
+  // Add more people as needed
+];
+
+const ListItem = ({ profileIcon, name, amountDue }) => (
+  <div className={styles.listItem}>
+    <img src={profileIcon} alt="Profile" className={styles.profileIcon} />
+    <div className={styles.personDetails}>
+      <p className={styles.personName}>{name}</p>
+      <p className={styles.amountDue}>${amountDue}</p>
+    </div>
+  </div>
+);
+
+const ChartSection = () => {
+  const largeChartData = {
+    labels: ["January", "February", "March", "April", "May", "June", "July"],
+    datasets: [
       {
-        name: "High - 2013",
-        data: [28, 29, 33, 36, 32, 32, 33],
+        label: "Monthly Sales",
+        data: [65, 59, 80, 81, 56, 55, 40],
+        backgroundColor: "rgba(75,192,192,0.2)",
+        borderColor: "rgba(75,192,192,1)",
+        borderWidth: 1,
       },
     ],
-    options: {
-      chart: {
-        height: 350,
-        type: "line",
-        zoom: {
-          enabled: false,
-        },
-      },
-      dataLabels: {
-        enabled: false,
-      },
-      stroke: {
-        curve: "straight",
-      },
-      title: {
-        text: "Farmer Loans Over Time",
-        align: "left",
-      },
-      grid: {
-        row: {
-          colors: ["#f3f3f3", "transparent"],
-          opacity: 0.5,
-        },
-      },
-      xaxis: {
-        categories: ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul"],
-      },
-    },
+  };
+
+  const doughnutChartData = {
+    labels: ["Red", "Blue", "Yellow"],
+    datasets: [300, 50, 100],
   };
   return (
-    <div className="p-4">
-      <h1 className="text-3xl font-bold my-4">Dashboard</h1>
-      <div className="grid grid-cols-2 gap-4 w-1/2">
+    <div className={styles.chartSection}>
+      <div className={styles.largeChart}>
         <Chart
-          options={chartDetails.options}
-          series={chartDetails.series}
+          options={{
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          }}
+          series={largeChartData.datasets}
           type="line"
-          width="500"
+          width="100%"
+          height="400"
+        />
+      </div>
+      <div className={styles.doughnutChart}>
+        <Chart
+          options={{
+            cutout: "60%",
+          }}
+          series={doughnutChartData.datasets}
+          type="donut"
+          width="100%"
+          height="100%"
+        />
+      </div>
+      <div className={styles.progressChart}>
+        <BorderLinearProgress
+          variant="determinate"
+          value={50}
           sx={{
-            gridColumns: 2,
+            width: "100%",
+            height: "10px",
+            borderRadius: "5px",
+            backgroundColor: "#555",
+            "& .MuiLinearProgress-bar": {
+              borderRadius: "5px",
+              backgroundColor: "#1a90ff",
+            },
           }}
         />
-        <div>
-          <div className="flex justify-between">
-            <div className={styles.circle}>
-              <p className="text-2xl font-bold">$ 100k+</p>
-              <p className="text-sm font-thin my-4">Total Profit</p>
-            </div>
-          </div>
-        </div>
-        <BorderLinearProgress variant="determinate" value={50} />
+      </div>
+    </div>
+  );
+};
+
+const Dashboard = () => {
+  return (
+    <div className={styles.dashboard}>
+      <ChartSection />
+      <div className={styles.listSection}>
+        {peopleList.map((person) => (
+          <ListItem
+            key={person.id}
+            profileIcon="https://via.placeholder.com/150"
+            name={person.name}
+            amountDue={person.amountDue}
+          />
+        ))}
       </div>
     </div>
   );
