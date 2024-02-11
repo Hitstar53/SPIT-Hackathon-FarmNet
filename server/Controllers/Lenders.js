@@ -9,6 +9,25 @@ const getAllLenders = async (req, res) => {
     }
 }
 
+const loginLender = async (req, res) => {
+    const { email, password } = req.body;
+    try {
+        const lender = await Lender.findOne({ email: email});
+
+        if (!lender) {
+            return res.status(404).json({ message: "Lender not found" });
+        
+        }
+        if (lender.password !== password) {
+            return res.status(404).json({ message: "Invalid credentials" });
+        }
+        res.status(200).json(lender);
+    }catch (error) {
+        res.status(500).json({ message: error.message });
+    
+    }
+}
+
 const getLenderbyEmail = async (req, res) => {
     const { email } = req.params;
     try {
@@ -55,4 +74,4 @@ const deleteLender = async (req, res) => {
     }
 }
 
-export { getAllLenders, getLenderbyEmail, createLender, updateLender, deleteLender };
+export { getAllLenders, getLenderbyEmail, createLender, updateLender, deleteLender,loginLender };

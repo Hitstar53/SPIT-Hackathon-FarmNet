@@ -6,6 +6,7 @@ import loansRouter from "./Loans.js"
 import lenderRouter from "./Lender.js"
 import lenderloanRouter from "./LenderLoan.js"
 import givenLoanRouter from "./GivenLoans.js"
+import marketRouter from "./Market.js"
 
 const router = express.Router();
 
@@ -16,5 +17,6 @@ router.use("/loans", loansRouter);
 router.use("/lender", lenderRouter);
 router.use("/lenderLoan", lenderloanRouter);
 router.use("/givenLoan", givenLoanRouter);
+router.use("/market", marketRouter);
 
 export default router;
