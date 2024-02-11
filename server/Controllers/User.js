@@ -54,7 +54,7 @@ const deleteUser = async (req, res) => {
 const getUserByAadhar = async (req, res) => {
     try {
         const { aadhar } = req.params;
-        const user = User.findOne({ aadhar });
+        const user = await User.findOne({ aadhar });
         res.status(200).json({ user });
     }catch(error){
         res.status(500).json({ error: error.message });
@@ -65,7 +65,7 @@ const getUserByAadhar = async (req, res) => {
 const getUserByphone = async (req, res) => {
     try {
         const { phoneno } = req.params;
-        const user = User.findOne({ phoneno });
+        const user = await User.findOne({ phoneno });
         res.status(200).json({ user });
     }catch(error){
         res.status(500).json({ error: error.message });
