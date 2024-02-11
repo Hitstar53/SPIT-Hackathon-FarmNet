@@ -8,11 +8,12 @@ import twilio from "twilio";
 const client = new twilio(accountSid, authToken);
 
 const authRouter = express.Router();
-
+let OP;
 authRouter.post("/signin", async (req, res) => {
     const { number } = req.body;
     try {
         const signinUser = await User.findOne({ phoneno: number });
+        console.log(signinUser);
         if (!signinUser) {
             return res.status(400).json({ message: "User not found" });
         }
@@ -22,7 +23,7 @@ authRouter.post("/signin", async (req, res) => {
         for (let i = 0; i < 4; i++) {
             OTP += digits[Math.floor(Math.random() * 10)];
         }
-
+        console.log(OTP);
         await client.messages.create({
             body: `Your OTP is ${OTP}`,
             messagingServiceSid: "MGf6e6f5f6d6d6d6d6d6d6d6d6d6d6d6d6",
