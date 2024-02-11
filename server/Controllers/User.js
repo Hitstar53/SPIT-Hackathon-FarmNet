@@ -62,4 +62,15 @@ const getUserByAadhar = async (req, res) => {
 
 }
 
-export { createUser, getUsers, updateUser, deleteUser, getUserByAadhar };
+const getUserByphone = async (req, res) => {
+    try {
+        const { phoneno } = req.params;
+        const user = User.findOne({ phoneno });
+        res.status(200).json({ user });
+    }catch(error){
+        res.status(500).json({ error: error.message });
+    }
+
+}
+
+export { createUser, getUsers, updateUser, deleteUser, getUserByAadhar,getUserByphone };
