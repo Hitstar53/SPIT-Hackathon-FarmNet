@@ -11,7 +11,7 @@ const createUser = async (req, res) => {
         aadharimg,
         profileimg,
         });
-        res.status(201).json({ data: user });
+        res.status(201).json({ data: JSON.stringify(user) });
     } catch (error) {
         res.status(500).json({ error: error.message });
     }
