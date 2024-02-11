@@ -13,7 +13,7 @@ let OTP, user, signinUser;
 authRouter.post("/signin", async (req, res) => {
     const { number } = req.body;
     try {
-        const signinuser = await User.findOne({ number });
+        const signinUser = await User.findOne({ phoneno: number });
         if (!signinUser) {
             return res.status(400).json({ message: "User not found" });
         }
