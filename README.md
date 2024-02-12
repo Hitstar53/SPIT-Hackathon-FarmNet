@@ -1,5 +1,10 @@
-# DocBot
+# Krishi Sathi 
 
+Krishi Sathi is a mobile application that to connect farmers and lending institutions by collecting essential farmer details, including Aadhaar card information, contact details, and farm specifics such as size, soil type, and crops grown. Leveraging this data, the app dynamically calculates a credit score for each farmer, aiding in the facilitation of loan requests and recommendations of suitable lending institutes based on their financial profile.
+
+The app includes various features like selecting preferred language, verification of photo with adhaar card photo, and a chatbot that offers guidance on a wide range of topics, from optimizing crop yield and soil management techniques to addressing mental health concerns specific to the farming community. 
+
+The app aims to empower farmers with the knowledge and tools needed to thrive in their agricultural pursuits while prioritizing their mental and financial wellness.
 
 # Screenshots
 
@@ -12,25 +17,15 @@
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/bafc6f25-7f5a-4e48-a7e5-af2eabc70d18" width =250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-<img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/2741e44a-ef3a-41c6-adf1-a9c76ea5ea89" width=250 height=500>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
-
-<img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/ca9dc2ed-1a6d-44d9-9e81-2145350d5ef3" width=250 height=500>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/8676fab5-b71f-4e6d-885e-9ef4396b2e24" width=250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
+<img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/2741e44a-ef3a-41c6-adf1-a9c76ea5ea89" width=250 height=500>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
-
-
-
-
-
-
+<img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/ca9dc2ed-1a6d-44d9-9e81-2145350d5ef3" width=250 height=500>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/485abe80-e094-4091-860e-2c3fd39fa88a" width=250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
