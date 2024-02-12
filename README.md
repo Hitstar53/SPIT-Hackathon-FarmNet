@@ -12,9 +12,8 @@
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/bafc6f25-7f5a-4e48-a7e5-af2eabc70d18" width =250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/2741e44a-ef3a-41c6-adf1-a9c76ea5ea89" width=250 height=500>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/ca9dc2ed-1a6d-44d9-9e81-2145350d5ef3" width=250 height=500>
