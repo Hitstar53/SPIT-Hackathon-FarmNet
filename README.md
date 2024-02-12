@@ -1,4 +1,4 @@
-# Krishi Sathi 
+ # Krishi Sathi 
 
 Krishi Sathi is a mobile application that to connects farmers and lending institutions by collecting essential farmer details, including Aadhaar card information, contact details, and farm specifics such as size, soil type, and crops grown. Leveraging this data, the app dynamically calculates a credit score for each farmer, aiding in the facilitation of loan requests and recommendations of suitable lending institutes based on their financial profile.
 
@@ -15,7 +15,6 @@ The app aims to empower farmers with the knowledge and tools needed to thrive in
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/bafc6f25-7f5a-4e48-a7e5-af2eabc70d18" width =250 height=500>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/8676fab5-b71f-4e6d-885e-9ef4396b2e24" width=250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -33,3 +32,5 @@ The app aims to empower farmers with the knowledge and tools needed to thrive in
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/dd64113c-1dfe-41f0-9d83-8f8320864c83" width = 250 height=500>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+
