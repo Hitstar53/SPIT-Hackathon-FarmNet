@@ -20,7 +20,6 @@ The app aims to empower farmers with the knowledge and tools needed to thrive in
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/8676fab5-b71f-4e6d-885e-9ef4396b2e24" width=250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
-
 <img src = "https://github.com/Hitstar53/SPIT-Hackthon-FarmNet/assets/65448232/2741e44a-ef3a-41c6-adf1-a9c76ea5ea89" width=250 height=500>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
