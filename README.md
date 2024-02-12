@@ -1,6 +1,6 @@
 # Krishi Sathi 
 
-Krishi Sathi is a mobile application that to connect farmers and lending institutions by collecting essential farmer details, including Aadhaar card information, contact details, and farm specifics such as size, soil type, and crops grown. Leveraging this data, the app dynamically calculates a credit score for each farmer, aiding in the facilitation of loan requests and recommendations of suitable lending institutes based on their financial profile.
+Krishi Sathi is a mobile application that to connects farmers and lending institutions by collecting essential farmer details, including Aadhaar card information, contact details, and farm specifics such as size, soil type, and crops grown. Leveraging this data, the app dynamically calculates a credit score for each farmer, aiding in the facilitation of loan requests and recommendations of suitable lending institutes based on their financial profile.
 
 The app includes various features like selecting preferred language, verification of photo with adhaar card photo, and a chatbot that offers guidance on a wide range of topics, from optimizing crop yield and soil management techniques to addressing mental health concerns specific to the farming community. 
 
